@@ -30,4 +30,4 @@ Start django server **(Windows)**
 python manage.py runserver
 ```
 
-# API Endpoints
+## [API Endpoints](https://bloodfuse.pythonanywhere.com/docs/)
