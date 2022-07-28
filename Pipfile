@@ -10,6 +10,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 django-rest-swagger = "*"
 tzdata = "*"
+gitpython = "*"
 
 [dev-packages]
 

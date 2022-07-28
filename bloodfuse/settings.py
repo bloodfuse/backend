@@ -1,14 +1,19 @@
+import json
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+with open(BASE_DIR / "env.json") as env_file:
+    ENV = json.loads(env_file.read())
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b_bc=eq#i-naf(o!t)(tg#luyl77omqgq35ux_5w*&uj(yh1ht'
+SECRET_KEY = ENV.get("APP_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -27,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps
+    'core',
 
     # 3rd Parties
     'rest_framework_swagger',
@@ -58,6 +64,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # Add the code below to remove SwaggerError
             'libraries': {
                 'staticfiles': 'django.templatetags.static',
             },
@@ -129,6 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # _________________________________________________________________________________________
 # SWAGGER
 # _________________________________________________________________________________________
+# Add the code below to remove SwaggerError
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
@@ -161,3 +169,9 @@ CORS_ALLOW_METHODS = [
 #     "x-csrftoken",
 #     "x-requested-with",
 # ]
+
+
+# _________________________________________________________________________________________
+# AUTH
+# _________________________________________________________________________________________
+AUTH_USER_MODEL = "core.CustomUser"
