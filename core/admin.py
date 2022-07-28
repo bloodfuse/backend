@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import CustomUser, Stat, Notification
 
-# Register your models here.
+
+admin.site.register(CustomUser)
+# admin.site.register(Stat)
+# admin.site.register(Notification)
