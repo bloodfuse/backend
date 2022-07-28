@@ -20,6 +20,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'bloodfuse.pythonanywhere.com',
+    'localhost',
 ]
 
 
@@ -37,8 +38,8 @@ INSTALLED_APPS = [
     'core',
 
     # 3rd Parties
-    'rest_framework_swagger',
     'corsheaders',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -66,10 +67,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            # Add the code below to remove SwaggerError
-            'libraries': {
-                'staticfiles': 'django.templatetags.static',
-            },
         },
     },
 ]
@@ -126,7 +123,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'static_collections',
+    # BASE_DIR / 'static_collections',
 ]
 
 STATIC_ROOT = BASE_DIR / "static_collections"
@@ -141,10 +138,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # _________________________________________________________________________________________
 # SWAGGER
 # _________________________________________________________________________________________
-# Add the code below to remove SwaggerError
-REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
-}
 
 
 # _________________________________________________________________________________________

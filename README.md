@@ -30,4 +30,9 @@ Start django server **(Windows)**
 python manage.py runserver
 ```
 
-## [API Endpoints](https://bloodfuse.pythonanywhere.com/docs/)
+# API Endpoints URLs
+- ## [Endpoints](https://bloodfuse.pythonanywhere.com/swagger/)
+- ## [Docs](https://bloodfuse.pythonanywhere.com/redoc/)
+- ## [Json](https://bloodfuse.pythonanywhere.com/swagger.json)
+- ## [Yaml](https://bloodfuse.pythonanywhere.com/swagger.yaml)
+
