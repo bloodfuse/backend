@@ -11,6 +11,8 @@ django-cors-headers = "*"
 tzdata = "*"
 gitpython = "*"
 drf-yasg = "*"
+djangorestframework-simplejwt = "*"
+dj-rest-auth = {extras = ["with_social"], version = "*"}
 
 [dev-packages]
 
