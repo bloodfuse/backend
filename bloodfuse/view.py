@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 # from django.views.decorators import csrf_exempt
 from django.http import HttpResponse
 
@@ -17,3 +17,7 @@ import git
 #         origin = repo.remotes.origin
 #         origin.pull()
 #     return HttpResponse("Code updated successfully")
+
+
+def redirect_to_index(request):
+    return redirect("index")

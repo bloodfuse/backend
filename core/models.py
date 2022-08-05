@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-class CustomUser(AbstractUser):
+class User(AbstractUser):
     ACCOUNT_TYPE = [
         ("donor", "donor"),
         ("recipient", "recipient"),
@@ -23,7 +23,7 @@ class CustomUser(AbstractUser):
 
     id = models.UUIDField(unique=True, primary_key=True, editable=False, default=uuid4)
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE)
-    blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP)
+    blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP, blank=True)
     rc_number = models.CharField(max_length=15, blank=True)
     fullname = models.CharField(max_length=200)
     email = models.EmailField(max_length=255, unique=True)
@@ -33,7 +33,7 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self) -> str:
-        return super().__str__()
+        return f"{self.fullname} | {self.id}"
 
 
 class Notification(models.Model):
