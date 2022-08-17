@@ -7,14 +7,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 with open(BASE_DIR / "env.json") as env_file:
-    ENV = json.loads(env_file.read())
+    env = json.loads(env_file.read())
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ENV.get("APP_SECRET_KEY")
+SECRET_KEY = env.get("APP_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+
+    # Restframe work 
     'rest_framework',
     'rest_framework.authtoken',
 ]
@@ -147,6 +149,21 @@ STATIC_ROOT = BASE_DIR / "static_collections"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'your.email.host'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.get('EMAIL_HOST_PASSWORD')
+
 
 # _________________________________________________________________________________________
 # SWAGGER
@@ -186,7 +203,10 @@ CORS_ALLOW_METHODS = [
 # AUTH
 # _________________________________________________________________________________________
 AUTH_USER_MODEL = "core.User"
-
+if DEBUG:
+    LOGIN_URL = 'http://localhost:8000/api/auth/login'
+else:
+    LOGIN_URL = 'https://bloodfuse.pythonanywhere.com/api/auth/login'
 
 # _________________________________________________________________________________________
 # DJ-REST-AUTH
@@ -199,7 +219,9 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 # REST_AUTH_SERIALIZERS = {
 #     'LOGIN_SERIALIZER': 'core.serializers.UserLoginSerializer',
@@ -208,6 +230,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'core.serializers.UserRegisterSerializer'
 }
+
 
 
 # _________________________________________________________________________________________
