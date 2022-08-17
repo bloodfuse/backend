@@ -14,7 +14,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-# from .view import update_from_github
+from dj_rest_auth.views import PasswordResetConfirmView
+from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
+
+
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -33,13 +37,25 @@ schema_view = get_schema_view(
 urlpatterns = [
     # Site
     path('', redirect_to_index, name="redirect_to_index"),
-    path('api/', include('core.urls')),
     path('_/', admin.site.urls),
-    # path("update_from_github", update_from_github, name="update_from_github"),
+    path('api/', include('core.urls')),
 
     # dj-auth endpoints
+    path(
+        'api/registration/account-confirm-email/<str:key>/',
+        ConfirmEmailView.as_view(),
+    ),
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/registration/', include('dj_rest_auth.registration.urls')),
+    path(
+        'api/auth/password/reset/confirm/<slug:uidb64>/<slug:token>/',
+        PasswordResetConfirmView.as_view(), name='password_reset_confirm'
+    ),
+    path(
+        'apih/account-confirm-email/',
+        VerifyEmailView.as_view(),
+        name='account_email_verification_sent'
+    ),
 
     # Swagger Api endpoints
     re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
