@@ -39,6 +39,7 @@ python manage.py runserver
 
 # API Endpoints URLs
 
+
 - ## [Endpoints](https://bloodfuse.pythonanywhere.com/swagger/)
 - ## [Docs](https://bloodfuse.pythonanywhere.com/redoc/)
 - ## [Json](https://bloodfuse.pythonanywhere.com/swagger.json)
@@ -103,6 +104,12 @@ response: {
     "blood_group": "O+",
 }
 ```
+=======
+- ### [Endpoints](https://bloodfuse.pythonanywhere.com/swagger/)
+- ### [Docs](https://bloodfuse.pythonanywhere.com/redoc/)
+- ### [Json](https://bloodfuse.pythonanywhere.com/swagger.json)
+- ### [Yaml](https://bloodfuse.pythonanywhere.com/swagger.yaml)
+
 
 <!--
     [GET TOKENS]  ---------------------------------
