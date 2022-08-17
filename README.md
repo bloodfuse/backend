@@ -104,7 +104,7 @@ response: {
     "blood_group": "O+",
 }
 ```
-=======
+
 - ### [Endpoints](https://bloodfuse.pythonanywhere.com/swagger/)
 - ### [Docs](https://bloodfuse.pythonanywhere.com/redoc/)
 - ### [Json](https://bloodfuse.pythonanywhere.com/swagger.json)
