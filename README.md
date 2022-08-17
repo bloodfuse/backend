@@ -105,12 +105,6 @@ response: {
 }
 ```
 
-- ### [Endpoints](https://bloodfuse.pythonanywhere.com/swagger/)
-- ### [Docs](https://bloodfuse.pythonanywhere.com/redoc/)
-- ### [Json](https://bloodfuse.pythonanywhere.com/swagger.json)
-- ### [Yaml](https://bloodfuse.pythonanywhere.com/swagger.yaml)
-
-
 <!--
     [GET TOKENS]  ---------------------------------
  -->
