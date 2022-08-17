@@ -68,15 +68,26 @@ https://bloodfuse.pythonanywhere.com/api/
 ### POST [/registration/](https://bloodfuse.pythonanywhere.com/api/registration/)
 #### Request
 
+```markdown
+#DESCRIPTION
+Bloodfuse registration API requires some parameters to be passed as a post request.
+
+#REQUIRED FIELDS
+email, user_name, account_type, fullname, blood_group, password_1, password_2.
+
+The account_type is of two options "donor" or "recipient", likwise the blood_group parameter also have some options to choose from, "O+", "O-", "A-", "A+", "B-", "B+", "AB-", "AB+".
+When passing password_1 and password_2 both parameters must be the same else a 404 error is thrown.
+```
+
 ```json
 parameters: {
-    "email":  string,
-    "username": string,
-    "account_type": "donor" | "reciepiant",
-    "fullname":  string,
+    "email":  "example@email.com",
+    "username": "user1",
+    "account_type": "donor",
+    "fullname":  "Thomas Edison",
     "blood_group": "O+",
-    "password1": string,
-    "password2": string
+    "password1": "1234567",
+    "password2": "1234567"
 }
 ```
 
@@ -85,13 +96,11 @@ parameters: {
 ```json
 method: GET,
 response: {
-    "email":  string,
-    "username": string,
-    "account_type": "donor" | "reciepiant",
-    "fullname":  string,
+    "email":  "example@email.com",
+    "username": "user1",
+    "account_type": "donor",
+    "fullname":  "Thomas Edison",
     "blood_group": "O+",
-    "password1": string,
-    "password2": string
 }
 ```
 
