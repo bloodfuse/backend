@@ -39,7 +39,6 @@ python manage.py runserver
 
 # API Endpoints URLs
 
-
 - ## [Endpoints](https://bloodfuse.pythonanywhere.com/swagger/)
 - ## [Docs](https://bloodfuse.pythonanywhere.com/redoc/)
 - ## [Json](https://bloodfuse.pythonanywhere.com/swagger.json)
@@ -55,6 +54,7 @@ https://bloodfuse.pythonanywhere.com/api/
 ```
 
 ## Authentication Endpoinsts
+
 <!--
     [REGISTRATION]  ---------------------------------
  -->
@@ -64,20 +64,32 @@ https://bloodfuse.pythonanywhere.com/api/
 - ### [/auth/login](#post-authlogin)
 - ### [/auth/password/reset/]()
 
-----------
+---
 
 ### POST [/registration/](https://bloodfuse.pythonanywhere.com/api/registration/)
+
 #### Request
+
+```markdown
+#DESCRIPTION
+Bloodfuse registration API requires some parameters to be passed as a post request.
+
+#REQUIRED FIELDS
+email, user_name, account_type, fullname, blood_group, password_1, password_2.
+
+The account_type is of two options "donor" or "recipient", likwise the blood_group parameter also have some options to choose from, "O+", "O-", "A-", "A+", "B-", "B+", "AB-", "AB+".
+When passing password_1 and password_2 both parameters must be the same else a 404 error is thrown.
+```
 
 ```json
 parameters: {
-    "email":  string,
-    "username": string,
-    "account_type": "donor" | "reciepiant",
-    "fullname":  string,
+    "email":  "example@email.com",
+    "username": "user1",
+    "account_type": "donor",
+    "fullname":  "Thomas Edison",
     "blood_group": "O+",
-    "password1": string,
-    "password2": string
+    "password1": "1234567",
+    "password2": "1234567"
 }
 ```
 
@@ -86,21 +98,16 @@ parameters: {
 ```json
 method: GET,
 response: {
-    "email":  string,
-    "username": string,
-    "account_type": "donor" | "reciepiant",
-    "fullname":  string,
-    "blood_group": "O+",
-    "password1": string,
-    "password2": string
+  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYwODQyMjA0LCJpYXQiOjE2NjA4NDE5MDQsImp0aSI6ImI3MmQ2OGQyODNmZjQ2OTc4OTYxNWYxZmZhMWZjZjk4IiwidXNlcl9pZCI6IjJhMTZhMTFmLWY0ZmItNDRmYi1hYjExLWRmN2I3MjU3MjMwMSJ9.9dvTG2Hamo3a9gwiJ1aIve3j0Na7M8lEAEhbvBEOg8I",
+  "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2MDkyODMwNCwiaWF0IjoxNjYwODQxOTA0LCJqdGkiOiI0NWY2Njg3MzYzZmE0NTkzYmUxODczMDA2YmY4Yzg2MyIsInVzZXJfaWQiOiIyYTE2YTExZi1mNGZiLTQ0ZmItYWIxMS1kZjdiNzI1NzIzMDEifQ.tpef4L3WluXVSguc5-ls4B8TOfxZSa1bAtrUwGvPtX0",
+  "user": {
+    "pk": "2a16a11f-f4fb-44fb-ab11-df7b72572301",
+    "email": "gaddiel5@gmail.com",
+    "first_name": "",
+    "last_name": ""
+  }
 }
 ```
-=======
-- ### [Endpoints](https://bloodfuse.pythonanywhere.com/swagger/)
-- ### [Docs](https://bloodfuse.pythonanywhere.com/redoc/)
-- ### [Json](https://bloodfuse.pythonanywhere.com/swagger.json)
-- ### [Yaml](https://bloodfuse.pythonanywhere.com/swagger.yaml)
-
 
 <!--
     [GET TOKENS]  ---------------------------------

@@ -17,6 +17,8 @@ from rest_framework_simplejwt.views import (
 from dj_rest_auth.views import PasswordResetConfirmView
 from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
 
+from .view import CustomEmailVerification
+
 
 
 
@@ -42,8 +44,10 @@ urlpatterns = [
 
     # dj-auth endpoints
     path(
-        'api/registration/account-confirm-email/<str:key>/',
-        ConfirmEmailView.as_view(),
+        'api/registration/account-confirm-email/<str:key>',
+        # ConfirmEmailView.as_view(),
+        CustomEmailVerification.as_view(),
+        name='account_email'
     ),
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/registration/', include('dj_rest_auth.registration.urls')),
@@ -52,7 +56,7 @@ urlpatterns = [
         PasswordResetConfirmView.as_view(), name='password_reset_confirm'
     ),
     path(
-        'apih/account-confirm-email/',
+        'api/account-confirm-email/',
         VerifyEmailView.as_view(),
         name='account_email_verification_sent'
     ),
