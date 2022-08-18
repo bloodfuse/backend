@@ -73,7 +73,9 @@ ROOT_URLCONF = 'bloodfuse.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -149,20 +151,22 @@ STATIC_ROOT = BASE_DIR / "static_collections"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'your.email.host'
+
+# _________________________________________________________________________________________
+# EMAIL CONFIG
+# _________________________________________________________________________________________
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = env.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env.get('EMAIL_HOST_PASSWORD')
+#* USE THE CONFIGS BELOW FOR PRODUCTION
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'your.email.host'
+# EMAIL_PORT = env.get('EMAIL_PORT')
+# EMAIL_HOST_USER = env.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = env.get('EMAIL_HOST_PASSWORD')
 
 
 # _________________________________________________________________________________________
@@ -174,7 +178,7 @@ EMAIL_HOST_PASSWORD = env.get('EMAIL_HOST_PASSWORD')
 # CORS
 # _________________________________________________________________________________________
 CORS_ALLOWED_ORIGINS = [
-    "http://www.example.com"
+    "https://www.bloodfuse.com"
 ]
 
 CORS_ALLOW_METHODS = [

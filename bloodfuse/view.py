@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 import git
 
+from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
 
 # @csrf_exempt
 # def update_from_github(request):
@@ -21,3 +22,15 @@ import git
 
 def redirect_to_index(request):
     return redirect("index")
+
+
+class CustomEmailVerification(ConfirmEmailView):
+    template_name = "ConfirmEmail.html"
+
+    def get_template_names(self):
+        template_name = "ConfirmEmail.html"
+        return [template_name]
+    
+    def get(self, *args, **kwargs):
+        print('<<<<<<<<<<<< Working >>>>>>>>>>>>>>>>>...')
+        return super().get()
