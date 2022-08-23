@@ -75,9 +75,9 @@ https://bloodfuse.pythonanywhere.com/api/
 Bloodfuse registration API requires some parameters to be passed as a post request.
 
 #REQUIRED FIELDS
-email, user_name, account_type, fullname, blood_group, password_1, password_2.
+email, user_name, account_type, first_name, last_name, blood_group, password_1, password_2.
 
-The account_type is of two options "donor" or "recipient", likwise the blood_group parameter also have some options to choose from, "O+", "O-", "A-", "A+", "B-", "B+", "AB-", "AB+".
+The account_type is of two options "donor" or "recipient", likewise the blood_group parameter also have some options to choose from, "O+", "O-", "A-", "A+", "B-", "B+", "AB-", "AB+".
 When passing password_1 and password_2 both parameters must be the same else a 404 error is thrown.
 ```
 
@@ -86,7 +86,8 @@ parameters: {
     "email":  "example@email.com",
     "username": "user1",
     "account_type": "donor",
-    "fullname":  "Thomas Edison",
+    "first_name":  "Thomas",
+    "last_name": "Edison",
     "blood_group": "O+",
     "password1": "1234567",
     "password2": "1234567"
@@ -103,8 +104,8 @@ response: {
   "user": {
     "pk": "2a16a11f-f4fb-44fb-ab11-df7b72572301",
     "email": "gaddiel5@gmail.com",
-    "first_name": "",
-    "last_name": ""
+   "first_name":  "Thomas",
+    "last_name": "Edison",
   }
 }
 ```

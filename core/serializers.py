@@ -8,31 +8,47 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 from core.models import User
 
 
-
 class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'blood_group', 'account_type', 'rc_number', 'fullname', 'password1', 'password2']
+        fields = [
+            'email',
+            'blood_group',
+            'account_type',
+            'first_name',
+            'last_name',
+            'rc_number',
+            'password1',
+            'password2'
+        ]
 
     @transaction.atomic
     def save(self, request, *args, **kwargs):
         data = self.data
         user = super().save(request)
-        user.username = "{0}_{1}".format(data.get('fullname'), get_random_string(5)),
-        user.fullname = data.get('fullname')
+        user.username = "{0}_{1}_{2}".format(
+            data.get('first_name'),
+            data.get('last_name'),
+            get_random_string(5)
+        ),
+        user.first_name = data.get('first_name')
+        user.last_name = data.get('last_name')
+        user.fullname = f"{ data.get('first_name') }_{ data.get('last_name') }"
         user.email = data.get('email')
         user.blood_group = data.get('blood_group', '')
         user.rc_number = data.get('rc_number', '')
-        user.account_type=data.get('account_type')
+        user.account_type = data.get('account_type')
         user.save()
         return user
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = [
+        model = User
+        fields = [
             'email',
-            'fullname',
+            'first_name',
+            'last_name',
             'id',
             'rc_number',
             'blood_group',
