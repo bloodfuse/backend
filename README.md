@@ -39,10 +39,10 @@ python manage.py runserver
 
 # API Endpoints URLs
 
-- ## [Endpoints](https://bloodfuse.pythonanywhere.com/swagger/)
-- ## [Docs](https://bloodfuse.pythonanywhere.com/redoc/)
-- ## [Json](https://bloodfuse.pythonanywhere.com/swagger.json)
-- ## [Yaml](https://bloodfuse.pythonanywhere.com/swagger.yaml)
+- ## [Endpoints](https://bloodfuse.pythonanywhere.com/api/swagger/)
+- ## [Docs](https://bloodfuse.pythonanywhere.com/api/redoc/)
+- ## [Json](https://bloodfuse.pythonanywhere.com/api/swagger.json)
+- ## [Yaml](https://bloodfuse.pythonanywhere.com/api/swagger.yaml)
 -
 
 # API Endpoints Docs
