@@ -178,7 +178,8 @@ EMAIL_PORT = 587
 # CORS
 # _________________________________________________________________________________________
 CORS_ALLOWED_ORIGINS = [
-    "https://www.bloodfuse.com"
+    "https://www.bloodfuse.com",
+    "http://localhost:3000",
 ]
 
 CORS_ALLOW_METHODS = [

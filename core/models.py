@@ -25,6 +25,8 @@ class User(AbstractUser):
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE)
     blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP, blank=True)
     rc_number = models.CharField(max_length=15, blank=True)
+    first_name = models.CharField(max_length=100, help_text='first_name')
+    last_name = models.CharField(max_length=100, help_text='last_name')
     fullname = models.CharField(max_length=200)
     email = models.EmailField(max_length=255, unique=True)
 
@@ -33,7 +35,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self) -> str:
-        return f"{self.fullname} | {self.id}"
+        return f"{self.username} | last login: {self.last_login}"
 
 
 class Notification(models.Model):
