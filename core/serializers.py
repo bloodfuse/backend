@@ -68,3 +68,15 @@ class DonorSerializer(serializers.ModelSerializer):
             'last_name',
             'account_type'
         ]
+
+
+class BloodCentersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'id',
+            'email',
+            'first_name',
+            'last_name',
+            'account_type'
+        ]

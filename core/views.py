@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from core.serializers import DonorSerializer, UserSerializer
+from core.serializers import BloodCentersSerializer, DonorSerializer, UserSerializer
 from rest_framework.decorators import api_view
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.viewsets import ModelViewSet
@@ -25,3 +25,8 @@ class DonorListView(ListAPIView):
     queryset = User.objects.filter(account_type="donor")
     permission_classes = [IsAuthenticated]
     serializer_class = DonorSerializer
+
+class BloodCentersListView(ListAPIView):
+    queryset = User.objects.filter(account_type="recipient")
+    permission_classes = [IsAuthenticated]
+    serializer_class = BloodCentersSerializer
