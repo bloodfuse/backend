@@ -189,7 +189,6 @@ response: {
 
 - ### [/user/donor](#get-usersdonors)
 
-
 ---
 
 ## GET [users/donors/](https://bloodfuse.pythonanywhere.com/api/auth/login/)
@@ -216,7 +215,6 @@ response: [
   {
     "id": "e471f66f-c27c-4a0b-b91a-f7259377a994",
     "email": "user3@example.com",
-    "rc_number": "",
     "first_name": "james",
     "last_name": "bob",
     "account_type": "donor"
@@ -224,7 +222,6 @@ response: [
   {
     "id": "e471f66f-c27c-4a0b-b91a-f725937342994",
     "email": "user3@example.com",
-    "rc_number": "",
     "first_name": "peter",
     "last_name": "king",
     "account_type": "donor"
@@ -232,10 +229,60 @@ response: [
   {
     "id": "e471f66f-c27c-4a0b-b91a-f725df47a994",
     "email": "user3@example.com",
-    "rc_number": "",
     "first_name": "tom",
     "last_name": "riot",
     "account_type": "donor"
+  },
+]
+```
+
+## GET [users/blood-centers/](https://bloodfuse.pythonanywhere.com/api/auth/login/)
+
+```json
+description: This endpoint is protected therefore a supply of an access token is required to gain access.
+```
+
+### Request
+
+```json
+Request_Header: {
+    ....
+    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYxNjQzNDYxLCJpYXQiOjE2NjE2NDMxNjEsImp0aSI6IjQxMmFiYmMxMzY3MzRiNTJiMzQyOWZkNTZiMGNiNzdhIiwidXNlcl9pZCI6ImU0NzFmNjZmLWMyN2MtNGEwYi1iOTFhLWY3MjU5Mzc3YTk5NCJ9.H7xlQXN8NJwi-QW22tLBueaFbNsszBzjAix-xwDxsW8"
+}
+```
+
+### Response
+
+```json
+method: GET
+status: 200
+response: [
+  {
+    "id": "e471f66f-c27c-4a0b-b91a-f7259377a994",
+    "email": "user3@example.com",
+    "rc_number": "",
+    "first_name": "james",
+    "last_name": "bob",
+    "rc_number": "",
+    "account_type": "recipient"
+  },
+  {
+    "id": "e471f66f-c27c-4a0b-b91a-f725937342994",
+    "email": "user3@example.com",
+    "rc_number": "",
+    "first_name": "peter",
+    "last_name": "king",
+    "rc_number": "",
+    "account_type": "recipient"
+  },
+  {
+    "id": "e471f66f-c27c-4a0b-b91a-f725df47a994",
+    "email": "user3@example.com",
+    "rc_number": "",
+    "first_name": "tom",
+    "last_name": "riot",
+    "rc_number": "",
+    "account_type": "recipient"
   },
 ]
 ```
