@@ -55,3 +55,28 @@ class UserSerializer(serializers.ModelSerializer):
             'account_type',
         ]
         depth = 1
+
+
+class DonorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'id',
+            'email',
+            'first_name',
+            'last_name',
+            'account_type'
+        ]
+
+
+class BloodCentersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'id',
+            'email',
+            'first_name',
+            'last_name',
+            'rc_number',
+            'account_type'
+        ]
