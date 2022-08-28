@@ -188,6 +188,7 @@ response: {
  -->
 
 - ### [/user/donor](#get-usersdonors)
+- ### [/user/blood-centers](#get-usersblood-centers)
 
 ---
 
