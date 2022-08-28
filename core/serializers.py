@@ -63,7 +63,6 @@ class DonorSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'email',
-            'rc_number',
             'first_name',
             'last_name',
             'account_type'
@@ -78,5 +77,6 @@ class BloodCentersSerializer(serializers.ModelSerializer):
             'email',
             'first_name',
             'last_name',
+            'rc_number',
             'account_type'
         ]
