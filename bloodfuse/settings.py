@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
     # Apps
     'core',
+    'appointments',
 
     # 3rd Parties
     'corsheaders',

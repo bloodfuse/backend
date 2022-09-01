@@ -41,6 +41,7 @@ urlpatterns = [
     path('', redirect_to_index, name="redirect_to_index"),
     path('_/', admin.site.urls),
     path('api/', include('core.urls')),
+    path('api/appointments/', include('appointments.urls')),
 
     # dj-auth endpoints
     path(
