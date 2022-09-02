@@ -38,4 +38,3 @@ class DonorsAppointments(ListAPIView):
         donor_id = self.request.kwargs.get('id')
         return Appointment.objects.filter(donor=donor_id)
 
-
