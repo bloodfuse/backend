@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     ACCOUNT_TYPE = [
         ("donor", "donor"),
-        ("recipient", "recipient"),
+        ("donation_center", "donation_center"),
         ("admin", "admin"),
     ]
 
@@ -27,6 +27,7 @@ class User(AbstractUser):
     rc_number = models.CharField(max_length=15, blank=True)
     first_name = models.CharField(max_length=100, help_text='first_name')
     last_name = models.CharField(max_length=100, help_text='last_name')
+    center_name = models.CharField(max_length=500, help_text='Name of hospital, center or blood bank', blank=True)
     fullname = models.CharField(max_length=200)
     email = models.EmailField(max_length=255, unique=True)
 

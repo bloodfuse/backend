@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from appointments.models import Appointment
+from appointments.permissions import IsBloodCenter
 from appointments.serializers import (
     AppointmentSerializer,
     BloodCenterAppointmentSerializer,
@@ -18,16 +19,17 @@ class AppointmentViewSet(ModelViewSet):
     serializer_class = AppointmentSerializer
 
 
-class BloodCenterAppointments(ListAPIView):
-    permission_classes = [IsAuthenticated]
+class BloodCenterAppointments(ListAPIView, UpdateModelMixin):
+    permission_classes = [IsAuthenticated, IsBloodCenter]
     serializer_class = BloodCenterAppointmentSerializer
+    lookup_field = "blood_center"
 
     def get_queryset(self, *args, **kwargs):
-        center_id = self.request.kwargs.get('id')
-        return Appointment.objects.filter(center=center_id)
+        center_id = self.kwargs.get('blood_center', None)
+        return Appointment.objects.filter(blood_center=center_id)
 
     def put(self, *args, **kwargs):
-        return self.partial_updates(self.request, *args, **kwargs)
+        return self.partial_update(self.request, *args, **kwargs)
 
 
 class DonorsAppointments(ListAPIView):
@@ -35,6 +37,5 @@ class DonorsAppointments(ListAPIView):
     serializer_class = DonorAppointmentSerializer
 
     def get_queryset(self, *args, **kwargs):
-        donor_id = self.request.kwargs.get('id')
+        donor_id = self.kwargs.get('donor_id', None)
         return Appointment.objects.filter(donor=donor_id)
-
