@@ -23,7 +23,7 @@ class BloodCenterAppointments(ListAPIView):
     serializer_class = BloodCenterAppointmentSerializer
 
     def get_queryset(self, *args, **kwargs):
-        center_id = self.request.kwargs.get('id')
+        center_id = self.kwargs.get('center_id', None)
         return Appointment.objects.filter(center=center_id)
 
     def put(self, *args, **kwargs):
@@ -35,6 +35,6 @@ class DonorsAppointments(ListAPIView):
     serializer_class = DonorAppointmentSerializer
 
     def get_queryset(self, *args, **kwargs):
-        donor_id = self.request.kwargs.get('id')
+        donor_id = self.kwargs.get('donor_id', None)
         return Appointment.objects.filter(donor=donor_id)
 

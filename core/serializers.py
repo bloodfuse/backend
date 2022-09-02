@@ -18,6 +18,7 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
             'first_name',
             'last_name',
             'rc_number',
+            'center_name',
             'password1',
             'password2'
         ]
@@ -37,6 +38,7 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
         user.email = data.get('email')
         user.blood_group = data.get('blood_group', '')
         user.rc_number = data.get('rc_number', '')
+        user.center_name = data.get('center_name', '')
         user.account_type = data.get('account_type')
         user.save()
         return user

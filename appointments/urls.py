@@ -16,13 +16,13 @@ router.register('', AppointmentViewSet)
 urlpatterns = [
     # Blood Center Appointments
     path(
-        'blood-center/<uuid:id>/', 
+        'blood-center/<uuid:center_id>/', 
         BloodCenterAppointments.as_view(), 
         name='blood_center_list_update_appointments'
     ),
     # Donor Appointments
     path(
-        'donor/<uuid:id>/', 
+        'donor/<uuid:donor_id>/', 
         DonorsAppointments.as_view(), 
         name='donor_list_appointments'
     ),
