@@ -22,6 +22,11 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
             'password1',
             'password2'
         ]
+        # extra_kwargs = {
+        #     'password': {'write_only': True},
+        #     'password1': {'write_only': True},
+        #     'password1': {'write_only': True},
+        # }
 
     @transaction.atomic
     def save(self, request, *args, **kwargs):

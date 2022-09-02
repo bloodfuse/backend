@@ -16,23 +16,24 @@ class BloodCenterAppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = [
-            'date',
-            'time',
+            'id',
             'reason_for_decline',
             'donor',
             'phone',
             'blood_center',
             'status',
+            'date',
+            'time',
             'timestamp',
         ]
         read_only_fields = [
             'donor',
             'phone',
             'blood_center',
-            'status',
             'timestamp',
+            'id'
         ]
-        depth = 1
+        # depth = 1
 
 
 class DonorAppointmentSerializer(serializers.ModelSerializer):
