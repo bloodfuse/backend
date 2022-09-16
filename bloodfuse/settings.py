@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 from datetime import timedelta
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,20 +40,22 @@ INSTALLED_APPS = [
     # Apps
     'core',
     'appointments',
+    'reports',
 
     # 3rd Parties
     'corsheaders',
-    'drf_yasg', # endpoint docs
-    'rest_framework_simplejwt', # jwt token
+    'drf_yasg',  # endpoint docs
+    'rest_framework_simplejwt',  # jwt token
+    'decouple',
 
-    'dj_rest_auth', #dj_rest-auth
+    'dj_rest_auth',  # dj_rest-auth
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
 
-    # Restframe work 
+    # Restframe work
     'rest_framework',
     'rest_framework.authtoken',
 ]
@@ -153,7 +157,6 @@ STATIC_ROOT = BASE_DIR / "static_collections"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
 # _________________________________________________________________________________________
 # EMAIL CONFIG
 # _________________________________________________________________________________________
@@ -162,7 +165,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-#* USE THE CONFIGS BELOW FOR PRODUCTION
+# * USE THE CONFIGS BELOW FOR PRODUCTION
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'your.email.host'
 # EMAIL_PORT = env.get('EMAIL_PORT')
@@ -220,7 +223,7 @@ else:
 # _________________________________________________________________________________________
 
 REST_USE_JWT = True
-JWT_AUTH_COOKIE = 'my-app-auth' # The cookie key name can be the one you want
+JWT_AUTH_COOKIE = 'my-app-auth'  # The cookie key name can be the one you want
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
@@ -239,7 +242,6 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 
-
 # _________________________________________________________________________________________
 # SIMPLE_JWT
 # _________________________________________________________________________________________
@@ -256,32 +258,37 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-#     'ROTATE_REFRESH_TOKENS': False,
-#     'BLACKLIST_AFTER_ROTATION': False,
-#     'UPDATE_LAST_LOGIN': False,
+    #     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    #     'ROTATE_REFRESH_TOKENS': False,
+    #     'BLACKLIST_AFTER_ROTATION': False,
+    #     'UPDATE_LAST_LOGIN': False,
 
-#     'ALGORITHM': 'HS256',
-#     'SIGNING_KEY': SECRET_KEY,
-#     'VERIFYING_KEY': None,
-#     'AUDIENCE': None,
-#     'ISSUER': None,
-#     'JWK_URL': None,
-#     'LEEWAY': 0,
+    #     'ALGORITHM': 'HS256',
+    #     'SIGNING_KEY': SECRET_KEY,
+    #     'VERIFYING_KEY': None,
+    #     'AUDIENCE': None,
+    #     'ISSUER': None,
+    #     'JWK_URL': None,
+    #     'LEEWAY': 0,
 
-#     'AUTH_HEADER_TYPES': ('Bearer',),
-#     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-#     'USER_ID_FIELD': 'id',
-#     'USER_ID_CLAIM': 'user_id',
-#     'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+    #     'AUTH_HEADER_TYPES': ('Bearer',),
+    #     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    #     'USER_ID_FIELD': 'id',
+    #     'USER_ID_CLAIM': 'user_id',
+    #     'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
 
-#     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-#     'TOKEN_TYPE_CLAIM': 'token_type',
-#     'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+    #     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    #     'TOKEN_TYPE_CLAIM': 'token_type',
+    #     'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
 
-#     'JTI_CLAIM': 'jti',
+    #     'JTI_CLAIM': 'jti',
 
-#     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-#     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
-#     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    #     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    #     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    #     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+
+# _________________________________________________________________________________________
+# PERSONAL SETTINGS
+# _________________________________________________________________________________________

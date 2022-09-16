@@ -42,6 +42,7 @@ urlpatterns = [
     path('_/', admin.site.urls),
     path('api/', include('core.urls')),
     path('api/appointments/', include('appointments.urls')),
+    path('api/reports/', include('reports.urls')),
 
     # dj-auth endpoints
     path(

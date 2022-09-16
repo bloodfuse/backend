@@ -13,6 +13,8 @@ gitpython = "*"
 drf-yasg = "*"
 djangorestframework-simplejwt = "*"
 dj-rest-auth = {extras = ["with_social"], version = "*"}
+requests = "*"
+python-decouple = "*"
 
 [dev-packages]
 
