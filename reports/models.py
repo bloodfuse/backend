@@ -4,7 +4,7 @@ from django.db import models
 from core.models import User
 
 
-class Reports(models.Model):
+class Report(models.Model):
 
     BLOOD_GROUP = [
         ("O-", "O-"),
