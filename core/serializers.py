@@ -1,7 +1,7 @@
 from uuid import uuid4
 from django.contrib.auth.hashers import check_password, make_password
 from django.db import transaction
-from core.utils import get_random_string
+from core.utils import get_random_string, send_sms
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
 
@@ -19,14 +19,14 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
             'last_name',
             'rc_number',
             'center_name',
+            'phone',
             'password1',
             'password2'
         ]
-        # extra_kwargs = {
-        #     'password': {'write_only': True},
-        #     'password1': {'write_only': True},
-        #     'password1': {'write_only': True},
-        # }
+        extra_kwargs = {
+            'password1': {'write_only': True},
+            'password1': {'write_only': True},
+        }
 
     @transaction.atomic
     def save(self, request, *args, **kwargs):
@@ -35,10 +35,11 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
         user.username = "{0}_{1}_{2}".format(
             data.get('first_name'),
             data.get('last_name'),
-            get_random_string(5)
+            get_random_string(6)
         ),
         user.first_name = data.get('first_name')
         user.last_name = data.get('last_name')
+        user.phone = data.get('phone')
         user.fullname = f"{ data.get('first_name') }_{ data.get('last_name') }"
         user.email = data.get('email')
         user.blood_group = data.get('blood_group', '')
@@ -58,6 +59,7 @@ class UserSerializer(serializers.ModelSerializer):
             'last_name',
             'id',
             'rc_number',
+            'phone',
             'blood_group',
             'account_type',
         ]

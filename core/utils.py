@@ -66,7 +66,7 @@ def send_sms(to: str, message: str) -> response:
 
 
 if __name__ == '__main__':
-
-    test_sms = send_sms('+2347050595335', "I'm just testing if this works")
+    message = "what \nabout now \n \nhmm\n still test"
+    test_sms = send_sms('+2347050595335', message)
     print(test_sms)
 
