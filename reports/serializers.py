@@ -1,15 +1,13 @@
 import requests
 from core.utils import send_sms
 
-from reports.models import Reports
+from .models import Report
 from rest_framework import serializers
-
-from django.conf import settings
 
 
 class ReportSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Reports
+        model = Report
         fields = '__all__'
         read_only_fields = [
             'donation_center',
@@ -29,9 +27,9 @@ class CenterReportSerializer(serializers.ModelSerializer):
     donation_time = serializers.TimeField(required=False)
     donation_date = serializers.DateField(required=False)
     class Meta:
-        model = Reports
+        model = Report
         fields = '__all__'
-        read_only_fields = ["""  """
+        read_only_fields = [
             'donor',
             'donation_center',
             'age',
@@ -56,21 +54,18 @@ class CenterReportSerializer(serializers.ModelSerializer):
                 'blood_donation_quantity',
                 instance.blood_donation_quantity
             )
-            instance.blood_donation_quantity = validated_data.get(
-                'blood_donation_quantity',
-                instance.blood_donation_quantity
-            )
+
 
             sms_message = """ 
             Dear {firstname}, 
-            \n \n we sincerely appreciate your effort in taking out time to donate {blood_quantify} of your blood to save a live. \n
+            \n \n we sincerely appreciate your effort in taking out time to donate {blood_quantify}pints of your blood to save a live. \n
             A medical report will be created for you soon, while you wait 
-            kindly check your dashboard for any incentive.
+            You will be paid some incentives shortly kindly check your dashboard.
             \n \n
-            Thanks again. 
+            Thanks you.
             """.format(
-                firstname=instance.donor.firstname,
-                blood_quantify=instance.blood_donation_quantity
+                firstname       =   instance.donor.firstname,
+                blood_quantify  =   instance.blood_donation_quantity
             )
             send_sms(instance.phone, sms_message)
             return instance
