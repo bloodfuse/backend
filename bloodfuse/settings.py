@@ -184,7 +184,7 @@ EMAIL_PORT = 587
 CORS_ALLOWED_ORIGINS = [
     "https://www.bloodfuse.com",
     "http://localhost:3000",
-    "https://bloodfuse.com",
+    "https://www.bloodfuse.com",
 ]
 
 CORS_ALLOW_METHODS = [
@@ -213,10 +213,8 @@ CORS_ALLOW_METHODS = [
 # AUTH
 # _________________________________________________________________________________________
 AUTH_USER_MODEL = "core.User"
-if DEBUG:
-    LOGIN_URL = 'http://localhost:8000/api/auth/login'
-else:
-    LOGIN_URL = 'https://bloodfuse.pythonanywhere.com/api/auth/login'
+# LOGIN_URL = 'http://localhost:8000/api/auth/login'
+LOGIN_URL = 'https://bloodfuse.pythonanywhere.com/api/auth/login'
 
 # _________________________________________________________________________________________
 # DJ-REST-AUTH

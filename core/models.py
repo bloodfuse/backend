@@ -25,15 +25,15 @@ class User(AbstractUser):
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE)
     blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP, blank=True)
     rc_number = models.CharField(max_length=15, blank=True)
-    first_name = models.CharField(max_length=100, help_text='first_name')
-    last_name = models.CharField(max_length=100, help_text='last_name')
+    first_name = models.CharField(max_length=100, help_text='first_name', blank=True)
+    last_name = models.CharField(max_length=100, help_text='last_name', blank=True)
     center_name = models.CharField(max_length=500, help_text='Name of hospital, center or blood bank', blank=True)
     fullname = models.CharField(max_length=200)
     phone = models.CharField(max_length=15, unique=True)
-    otp = models.CharField(max_length=6, blank=True, editable=False)
-    otp_is_verified = models.BooleanField(default=False)
+    # otp = models.CharField(max_length=6, blank=True, editable=False)
+    # otp_is_verified = models.BooleanField(default=False)
     email = models.EmailField(max_length=255, unique=True)
-    email_is_verified = models.BooleanField(default=False)
+    # email_is_verified = models.BooleanField(default=False)
 
 
     USERNAME_FIELD = "email"
