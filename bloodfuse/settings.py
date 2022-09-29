@@ -24,6 +24,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'bloodfuse.pythonanywhere.com',
     'localhost',
+    'www.bloodfuse.com'
 ]
 
 
