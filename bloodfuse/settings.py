@@ -209,7 +209,7 @@ CORS_ALLOW_HEADERS = [
      "x-requested-with",
  ]
 
-#CORS_ALLOW_ALL_ORIGIN:  True
+CORS_ALLOW_ALL_ORIGIN:  True
 
 # _________________________________________________________________________________________
 # AUTH
