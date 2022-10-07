@@ -33,7 +33,7 @@ class User(AbstractUser):
     # otp = models.CharField(max_length=6, blank=True, editable=False)
     # otp_is_verified = models.BooleanField(default=False)
     email = models.EmailField(max_length=255, unique=True)
-    # email_is_verified = models.BooleanField(default=False)
+    email_is_verified = models.BooleanField(default=False)
 
 
     USERNAME_FIELD = "email"

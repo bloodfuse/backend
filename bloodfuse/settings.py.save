@@ -185,6 +185,7 @@ EMAIL_PORT = 587
 CORS_ALLOWED_ORIGINS = [
     "https://www.bloodfuse.com",
     "http://localhost:3000",
+    "https://www.bloodfuse.com/",
 ]
 
 CORS_ALLOW_METHODS = [
@@ -206,7 +207,8 @@ CORS_ALLOW_HEADERS = [
      "user-agent",
      "x-csrftoken",
      "x-requested-with",
-     "Access-Control-Allow-Credentials",
+     "Access-Control-Allow-Credentials
+
  ]
 
 CORS_ALLOW_ALL_ORIGIN:  True
