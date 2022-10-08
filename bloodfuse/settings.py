@@ -185,6 +185,7 @@ EMAIL_PORT = 587
 CORS_ALLOWED_ORIGINS = [
     "https://www.bloodfuse.com",
     "http://localhost:3000",
+    "https://bloodfuse.com"
 ]
 
 CORS_ALLOW_METHODS = [
@@ -235,9 +236,9 @@ ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
-# REST_AUTH_SERIALIZERS = {
-#     'LOGIN_SERIALIZER': 'core.serializers.UserLoginSerializer',
-# }
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'core.serializers.UserLoginSerializer',
+}
 
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'core.serializers.UserRegisterSerializer'

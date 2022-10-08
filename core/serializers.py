@@ -4,6 +4,7 @@ from django.db import transaction
 from core.utils import get_random_string, send_sms
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
+from dj_rest_auth.serializers import LoginSerializer
 
 from core.models import User
 
@@ -48,6 +49,59 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
         user.account_type = data.get('account_type')
         user.save()
         return user
+
+
+class UserLoginSerializer(LoginSerializer):
+    ACCOUNT_TYPE = [
+        ("donor", "donor"),
+        ("donation_center", "donation_center"),
+        ("admin", "admin"),
+    ]
+
+    BLOOD_GROUP = [
+        ("O-", "O-"),
+        ("O+", "O+"),
+        ("A-", "A-"),
+        ("A+", "A+"),
+        ("B-", "B-"),
+        ("B+", "B+"),
+        ("AB-", "AB-"),
+        ("AB+", "AB+"),
+    ]
+
+    id = serializers.UUIDField(default=uuid4)
+    account_type = serializers.CharField(required=False)
+    blood_group = serializers.CharField(required=False)
+    rc_number = serializers.CharField(required=False)
+    first_name = serializers.CharField(required=False)
+    last_name = serializers.CharField(required=False)
+    center_name = serializers.CharField(required=False)
+    fullname = serializers.CharField(required=False)
+    phone = serializers.CharField(required=False)
+    email_is_verified = serializers.BooleanField(default=False)
+
+    class Meta:
+        model = User
+        fields = [
+            # 'email',
+            'password',
+            'first_name',
+            'last_name',
+            'id',
+            'rc_number',
+            'phone',
+            'blood_group',
+            'account_type',
+        ]
+        read_only_fields = [
+            'first_name',
+            'last_name',
+            'id',
+            'rc_number',
+            'phone',
+            'blood_group',
+            'account_type',
+        ]
 
 
 class UserSerializer(serializers.ModelSerializer):

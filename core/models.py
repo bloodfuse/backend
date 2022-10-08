@@ -30,10 +30,10 @@ class User(AbstractUser):
     center_name = models.CharField(max_length=500, help_text='Name of hospital, center or blood bank', blank=True)
     fullname = models.CharField(max_length=200)
     phone = models.CharField(max_length=15, unique=True)
-    # otp = models.CharField(max_length=6, blank=True, editable=False)
-    # otp_is_verified = models.BooleanField(default=False)
     email = models.EmailField(max_length=255, unique=True)
     email_is_verified = models.BooleanField(default=False)
+    # otp = models.CharField(max_length=6, blank=True, editable=False)
+    # otp_is_verified = models.BooleanField(default=False)
 
 
     USERNAME_FIELD = "email"
