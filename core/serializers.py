@@ -38,8 +38,8 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
             data.get('last_name'),
             get_random_string(6)
         ),
-        user.first_name = data.get('first_name')
-        user.last_name = data.get('last_name')
+        user.first_name = data.get('first_name', '')
+        user.last_name = data.get('last_name', '')
         user.phone = data.get('phone')
         user.fullname = f"{ data.get('first_name') }_{ data.get('last_name') }"
         user.email = data.get('email')
@@ -78,12 +78,13 @@ class UserLoginSerializer(LoginSerializer):
     center_name = serializers.CharField(required=False)
     fullname = serializers.CharField(required=False)
     phone = serializers.CharField(required=False)
+    email = serializers.CharField(required=True)
     email_is_verified = serializers.BooleanField(default=False)
 
     class Meta:
         model = User
         fields = [
-            # 'email',
+            'email',
             'password',
             'first_name',
             'last_name',
