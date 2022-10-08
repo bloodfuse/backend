@@ -236,9 +236,9 @@ ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
-REST_AUTH_SERIALIZERS = {
-    'LOGIN_SERIALIZER': 'core.serializers.UserLoginSerializer',
-}
+# REST_AUTH_SERIALIZERS = {
+#     'LOGIN_SERIALIZER': 'core.serializers.UserLoginSerializer',
+# }
 
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'core.serializers.UserRegisterSerializer'
