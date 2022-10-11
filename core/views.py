@@ -27,6 +27,7 @@ class DonorListView(ListAPIView):
     serializer_class = DonorSerializer
 
 class BloodCentersListView(ListAPIView):
-    queryset = User.objects.filter(account_type="recipient")
+    queryset = User.objects.filter(account_type="donation_center")
     permission_classes = [IsAuthenticated]
     serializer_class = BloodCentersSerializer
+

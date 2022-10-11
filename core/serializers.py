@@ -139,8 +139,7 @@ class BloodCentersSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'email',
-            'first_name',
-            'last_name',
             'rc_number',
-            'account_type'
+            'account_type',
+            'center_name',
         ]
