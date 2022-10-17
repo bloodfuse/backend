@@ -21,6 +21,7 @@ Setup dev environment
 
 ```console
 cd ./backend
+pip install pipenv
 pipenv install
 pipenv shell
 ```

@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 from datetime import timedelta
 
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_yasg',  # endpoint docs
     'rest_framework_simplejwt',  # jwt token
-    'decouple',
 
     'dj_rest_auth',  # dj_rest-auth
     'django.contrib.sites',
