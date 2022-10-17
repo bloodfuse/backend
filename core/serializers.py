@@ -93,6 +93,7 @@ class UserLoginSerializer(LoginSerializer):
             'phone',
             'blood_group',
             'account_type',
+            'center_name'
         ]
         read_only_fields = [
             'first_name',
@@ -102,6 +103,7 @@ class UserLoginSerializer(LoginSerializer):
             'phone',
             'blood_group',
             'account_type',
+            'center_name'
         ]
 
 
@@ -143,3 +145,4 @@ class BloodCentersSerializer(serializers.ModelSerializer):
             'account_type',
             'center_name',
         ]
+

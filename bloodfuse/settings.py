@@ -214,7 +214,7 @@ CORS_ALLOW_ALL_ORIGIN:  True
 
 # CORS_ALLOWED_CREDENTIALS: True
 
-CORS_ALLOW_CREDENTIALS: True
+# CORS_ALLOW_CREDENTIALS: True
 
 # _________________________________________________________________________________________
 # AUTH
