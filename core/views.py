@@ -12,7 +12,7 @@ from core.models import User
 
 @api_view()
 def index(request):
-    return JsonResponse({"message": "Welcome to bloodfuse API"})
+    return JsonResponse({"message": "Welcome to bloodfuse API."})
 
 
 class UserViewSet(ModelViewSet):

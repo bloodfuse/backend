@@ -2,6 +2,10 @@ import json
 from pathlib import Path
 from datetime import timedelta
 
+<<<<<<< HEAD
+=======
+# from decouple import config
+>>>>>>> 1451f0c (initial commit)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,6 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'bloodfuse.pythonanywhere.com',
     'localhost',
+    '127.0.0.1',
     'www.bloodfuse.com'
 ]
 
