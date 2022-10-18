@@ -2,10 +2,7 @@ import json
 from pathlib import Path
 from datetime import timedelta
 
-<<<<<<< HEAD
-=======
 # from decouple import config
->>>>>>> 1451f0c (initial commit)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -214,6 +211,10 @@ CORS_ALLOW_HEADERS = [
  ]
 
 CORS_ALLOW_ALL_ORIGIN:  True
+
+# ===== Requsted by fronend devs =====
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
 
 # CORS_ALLOWED_CREDENTIALS: True
 

@@ -119,6 +119,7 @@ class UserSerializer(serializers.ModelSerializer):
             'phone',
             'blood_group',
             'account_type',
+            'center_name'
         ]
         depth = 1
 
