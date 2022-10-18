@@ -208,7 +208,7 @@ CORS_ALLOW_HEADERS = [
      "Access-Control-Allow-Credentials",
  ]
 
-CORS_ALLOW_ALL_ORIGIN:  True
+CORS_ALLOW_ALL_ORIGIN = True
 
 # CORS_ALLOWED_CREDENTIALS: True
 
