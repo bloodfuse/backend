@@ -2,8 +2,6 @@ import json
 from pathlib import Path
 from datetime import timedelta
 
-# from decouple import config
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -210,7 +208,7 @@ CORS_ALLOW_HEADERS = [
      "Access-Control-Allow-Credentials",
  ]
 
-CORS_ALLOW_ALL_ORIGIN:  True
+CORS_ALLOW_ALL_ORIGIN = True
 
 # ===== Requsted by fronend devs =====
 SESSION_COOKIE_SAMESITE = 'None'
