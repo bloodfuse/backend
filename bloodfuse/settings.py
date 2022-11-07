@@ -6,8 +6,8 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-with open(BASE_DIR / "env.json") as env_file:
-    env = json.loads(env_file.read())
+# with open(BASE_DIR / "env.json") as env_file:
+#     env = json.loads(env_file.read())
 
 
 # Quick-start development settings - unsuitable for production
