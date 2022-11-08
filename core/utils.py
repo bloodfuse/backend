@@ -1,10 +1,15 @@
 from pathlib import Path
-import json
+import os
 from string import ascii_letters, digits
 from random import choices, seed
 from time import time
 from urllib import response
 import requests
+# import environ
+
+# Loading an Environment Variable File with dotenv
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
 
@@ -12,8 +17,11 @@ seed = time()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open(BASE_DIR / "env.json") as env_file:
-    env = json.loads(env_file.read())
+# with open(BASE_DIR / "env.json") as env_file:
+#     env = json.loads(env_file.read())
+
+
+
 
 
 
@@ -43,7 +51,10 @@ def send_sms(to: str, message: str) -> response:
             }
         }
     """
-    SMS_API_TOKEN = env.get("SMS_API_TOKEN")
+    # SMS_API_TOKEN = env("SMS_API_TOKEN")
+    SMS_API_TOKEN = os.environ.get("SMS_API_TOKEN")
+
+    print(SMS_API_TOKEN)
     
 
     sms_url = 'https://www.bulksmsnigeria.com/api/v2/sms/create'
