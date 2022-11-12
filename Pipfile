@@ -49,6 +49,7 @@ urllib3 = "==1.26.12"
 django-environ = "*"
 python-dotenv = "*"
 django-dotenv = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

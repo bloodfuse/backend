@@ -35,6 +35,7 @@ markupsafe==2.1.1
 oauthlib==3.2.1
 packaging==21.3
 pillow==9.2.0
+psycopg2-binary==2.9.5
 pycparser==2.21
 pyjwt[crypto]==2.4.0
 pyparsing==3.0.9
