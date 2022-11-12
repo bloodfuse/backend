@@ -48,6 +48,7 @@ uritemplate = "==4.1.1"
 urllib3 = "==1.26.12"
 django-environ = "*"
 python-dotenv = "*"
+django-dotenv = "*"
 
 [dev-packages]
 
