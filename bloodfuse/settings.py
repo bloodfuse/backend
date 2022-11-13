@@ -21,7 +21,8 @@ ALLOWED_HOSTS = [
     'bloodfuse.pythonanywhere.com',
     'localhost',
     '127.0.0.1',
-    'www.bloodfuse.com'
+    'www.bloodfuse.com',
+    'shark-app-49nyv.ondigitalocean.app'
 ]
 
 

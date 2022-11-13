@@ -20,8 +20,6 @@ from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
 from .view import CustomEmailVerification
 
 
-
-
 schema_view = get_schema_view(
     openapi.Info(
         title="BloodFuse API Endpoint",
@@ -64,13 +62,16 @@ urlpatterns = [
     ),
 
     # Swagger Api endpoints
-    re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    re_path(r'^api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    re_path(r'^api/swagger(?P<format>\.json|\.yaml)$',
+            schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    re_path(r'^api/swagger/$', schema_view.with_ui('swagger',
+            cache_timeout=0), name='schema-swagger-ui'),
+    re_path(r'^api/redoc/$', schema_view.with_ui('redoc',
+            cache_timeout=0), name='schema-redoc'),
 
     # rest_framework_simplejwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 '''
