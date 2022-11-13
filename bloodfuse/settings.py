@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'www.bloodfuse.com',
+    'bloodfuse.com',
     'shark-app-49nyv.ondigitalocean.app'
 ]
 
@@ -245,7 +246,8 @@ MY_APP_AUTH_COOKIE_SECURE = True
 # _________________________________________________________________________________________
 AUTH_USER_MODEL = "core.User"
 # LOGIN_URL = 'http://localhost:8000/api/auth/login'
-LOGIN_URL = 'https://bloodfuse.pythonanywhere.com/api/auth/login'
+# LOGIN_URL = 'https://bloodfuse.pythonanywhere.com/api/auth/login' # Old Login Url
+LOGIN_URL = 'shark-app-49nyv.ondigitalocean.app/api/auth/login'  # New Login Url
 
 # _________________________________________________________________________________________
 # DJ-REST-AUTH
