@@ -194,32 +194,33 @@ EMAIL_PORT = 587
 CORS_ALLOWED_ORIGINS = [
     "https://www.bloodfuse.com",
     "http://localhost:3000",
-    "https://bloodfuse.com"
+    "https://bloodfuse.com",
+    "http://127.0.0.1:3000"
 ]
 
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
 
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-    "Access-Control-Allow-Credentials",
-]
+# CORS_ALLOW_HEADERS = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+#     "Access-Control-Allow-Credentials",
+# ]
 
-CORS_ALLOW_ALL_ORIGIN = True
+# CORS_ALLOW_ALL_ORIGIN = True
 
 # ===== Requsted by fronend devs =====
 SESSION_COOKIE_SAMESITE = 'None'
