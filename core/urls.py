@@ -12,7 +12,7 @@ from .views import (
 
 
 router = routers.DefaultRouter()
-router.register("user", UserViewSet)
+# router.register("user", UserViewSet)
 
 urlpatterns = [
     path('', index, name="index"),
