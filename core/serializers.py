@@ -133,15 +133,15 @@ class UserSerializer(serializers.ModelSerializer):
         if y.exists():
             for z in y:
                 xval = {
-                    'email': z.email
-                    'first_name': z.first_name
-                    'last_name': z.last_name
-                    'id': z.id
-                    'rc_number': z.rc_number
-                    'phone': z.phone
-                    'blood_group': z.blood_group
-                    'account_type': z.account_type
-                    'center_name': z.center_name
+                    'email': z.email,
+                    'first_name': z.first_name,
+                    'last_name': z.last_name,
+                    'id': z.id,
+                    'rc_number': z.rc_number,
+                    'phone': z.phone,
+                    'blood_group': z.blood_group,
+                    'account_type': z.account_type,
+                    'center_name': z.center_name,
                 }
             val = {
                 'message': 'success',
