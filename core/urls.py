@@ -16,7 +16,7 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('', index, name="index"),
-    path('user/', UserView.as_view, name="user_view"),
+    path('user/', UserView.as_view(), name="user_view"),
     path('users/donors/', DonorListView.as_view(), name='donor_list'),
     path('users/blood-centers/', BloodCentersListView.as_view(), name='blood_centers_list'),
 ]
