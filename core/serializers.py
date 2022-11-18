@@ -124,7 +124,7 @@ class UserSerializer(serializers.ModelSerializer):
         depth = 1
 
     def details(user):
-        y = User.objects.get(username=str(user))
+        y = User.objects.filter(username=str(user))
         val = {
             'message': 'failed',
             'data': 'No data found'
