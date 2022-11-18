@@ -124,7 +124,7 @@ class UserSerializer(serializers.ModelSerializer):
         depth = 1
 
     def details(user):
-        # x = User.objects.get(email=user)
+        # y = User.objects.get(username=user.username)
         # val = {
         #     'message': 'failed',
         #     'data': 'No data found'
@@ -148,14 +148,14 @@ class UserSerializer(serializers.ModelSerializer):
         #         'data': xval
         #     }
         val = {
-            "user": str(user)
+            "user": str(user),
+            "type": str(type(user))
         }
 
         class Response(object):
             data = val
 
         return Response
-
 
 
 class DonorSerializer(serializers.ModelSerializer):
@@ -180,4 +180,3 @@ class BloodCentersSerializer(serializers.ModelSerializer):
             'account_type',
             'center_name',
         ]
-
