@@ -23,6 +23,7 @@ class UserView(APIView):
 
     def get(self, request):
         user = request.user
+        print(user)
         user = UserSerializer(user)
 
         return Response(user.data, status=status.HTTP_OK)
