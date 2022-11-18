@@ -40,7 +40,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self) -> str:
-        return f"{self.username} | last login: {self.last_login}"
+        return self.username
 
 
 class Notification(models.Model):

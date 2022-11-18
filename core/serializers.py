@@ -124,33 +124,33 @@ class UserSerializer(serializers.ModelSerializer):
         depth = 1
 
     def details(user):
-        # y = User.objects.get(username=user.username)
-        # val = {
-        #     'message': 'failed',
-        #     'data': 'No data found'
-        # }
-
-        # if y.exists():
-        #     for z in y:
-        #         xval = {
-        #             'email': z.email
-        #             'first_name': z.first_name
-        #             'last_name': z.last_name
-        #             'id': z.id
-        #             'rc_number': z.rc_number
-        #             'phone': z.phone
-        #             'blood_group': z.blood_group
-        #             'account_type': z.account_type
-        #             'center_name': z.center_name
-        #         }
-        #     val = {
-        #         'message': 'success',
-        #         'data': xval
-        #     }
+        y = User.objects.get(username=str(user))
         val = {
-            "user": str(user),
-            "type": str(type(user))
+            'message': 'failed',
+            'data': 'No data found'
         }
+
+        if y.exists():
+            for z in y:
+                xval = {
+                    'email': z.email
+                    'first_name': z.first_name
+                    'last_name': z.last_name
+                    'id': z.id
+                    'rc_number': z.rc_number
+                    'phone': z.phone
+                    'blood_group': z.blood_group
+                    'account_type': z.account_type
+                    'center_name': z.center_name
+                }
+            val = {
+                'message': 'success',
+                'data': xval
+            }
+        # val = {
+        #     "user": str(user),
+        #     "type": str(type(user))
+        # }
 
         class Response(object):
             data = val
