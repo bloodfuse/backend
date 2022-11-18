@@ -123,56 +123,38 @@ class UserSerializer(serializers.ModelSerializer):
         ]
         depth = 1
 
-        # def details(user):
-        #     x = User.objects.get(username=user)
-        #     y = Sub.objects.filter(user_id=x.pk,)
-        #     val = {
-        #         'status': 'failed',
-        #         'data': 'No data found'
-        #     }
+        def details(user):
+            # x = User.objects.get(email=user)
+            # val = {
+            #     'message': 'failed',
+            #     'data': 'No data found'
+            # }
 
-        #     if y.exists():
-        #         for z in y:
-        #             ii = []
-        #             jj = []
-        #             for i in z.banks.all():
-        #                 ii.append(i.name)
-        #             for j in z.spam_type.all():
-        #                 jj.append(j.name)
-        #             xval = {
-        #                 'user': z.user.username,
-        #                 'plan': z.plan,
-        #                 'banks': ii,
-        #                 'spam_type': jj,
-        #                 'auto_verify': z.auto_verify,
-        #                 'email_access': z.email_access,
-        #                 'expires': z.expires,
-        #                 'leads': z.leads,
-        #                 'duration': z.duration,
-        #                 'is_active': z.is_active,
-        #                 'license_key': z.license_key,
-        #             }
-        #             if search == None or search == '' or search == 'all':
-        #                 val = xval
-        #             elif search in xList:
-        #                 val = {
-        #                     'user': z.user.username,
-        #                 }
-        #                 val[search] =  xval[search],
-        #             else:
-        #                 val = {
-        #                     'user': z.user.username,
-        #                 }
-        #                 val[search] = search+' is an invalid query.',
-        #         val = {
-        #             'status': 'success',
-        #             'data': val
-        #         }
+            # if y.exists():
+            #     for z in y:
+            #         xval = {
+            #             'email': z.email
+            #             'first_name': z.first_name
+            #             'last_name': z.last_name
+            #             'id': z.id
+            #             'rc_number': z.rc_number
+            #             'phone': z.phone
+            #             'blood_group': z.blood_group
+            #             'account_type': z.account_type
+            #             'center_name': z.center_name
+            #         }
+            #     val = {
+            #         'message': 'success',
+            #         'data': xval
+            #     }
+            val = {
+                "user": user
+            }
 
-        #     class Response(object):
-        #         data = val
+            class Response(object):
+                data = val
 
-        #     return Response
+            return Response
 
 
 
