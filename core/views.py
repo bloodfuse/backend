@@ -25,7 +25,7 @@ class UserView(APIView):
         user = request.user
         user = UserSerializer.details(user)
 
-        return Response(user.data, status=status.HTTP_OK)
+        return Response(user.data, status=status.HTTP__200_OK)
 
 class DonorListView(ListAPIView):
     queryset = User.objects.filter(account_type="donor")
