@@ -148,7 +148,7 @@ class UserSerializer(serializers.ModelSerializer):
         #         'data': xval
         #     }
         val = {
-            "user": user
+            "user": str(user)
         }
 
         class Response(object):
