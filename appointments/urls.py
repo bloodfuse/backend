@@ -4,8 +4,10 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     AppointmentViewSet,
     BloodCenterAppointments,
-    DonorsAppointments
+    DonorsAppointments,
+    RequestBlood
 )
+# .
 
 
 router = DefaultRouter()
@@ -26,6 +28,7 @@ urlpatterns = [
         DonorsAppointments.as_view(), 
         name='donor_list_appointments'
     ),
+    path('requestblood/', RequestBlood.as_view())
 ]
 
 urlpatterns += router.urls

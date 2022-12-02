@@ -4,8 +4,12 @@ from appointments.permissions import IsBloodCenter
 from appointments.serializers import (
     AppointmentSerializer,
     BloodCenterAppointmentSerializer,
-    DonorAppointmentSerializer
+    DonorAppointmentSerializer,
+    RequestBloodSerializer as RBS
 )
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
 
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListAPIView, UpdateAPIView
@@ -39,3 +43,25 @@ class DonorsAppointments(ListAPIView):
     def get_queryset(self, *args, **kwargs):
         donor_id = self.kwargs.get('donor_id', None)
         return Appointment.objects.filter(donor=donor_id)
+
+
+class RequestBlood(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        data = request.data
+        res  = RBS.create(user, data)
+
+        return Response(res.data, status=status.HTTP_200_OK)
+
+
+    def get(self, request):
+        user = request.user
+        res = RBS.details(user)
+
+        return Response(res.data, status=status.HTTP_200_OK)
+        
+
+
+

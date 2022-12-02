@@ -1,9 +1,9 @@
 from core.utils import send_sms
 from rest_framework import serializers
 
-from .models import Appointment
+from .models import Appointment, RequestsBlood as RB
 
-
+from core.models import User
 
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -72,3 +72,60 @@ class DonorAppointmentSerializer(serializers.ModelSerializer):
                 'reason_for_decline',
                 'blood_center',
             ]
+
+
+class RequestBloodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RB
+        fields = ['user']
+
+    def create(user, data):
+        try:
+            user = User.objects.filter(username=user)
+            x = RB()
+            x.user = user,
+            x.blood_type = data['blood_type'],
+            x.gender = data['gender'],
+            x.center = data['center'],
+            x.telephone = data['telephone']
+            x.save()
+
+            class Response(object):
+                data = {'message': 'Created successfully'}
+
+        except Exception as e:
+            class Response(object):
+                data = {'message': 'Error occurred',
+                'error': str(e)}
+
+        return Response
+
+    def details(user):
+        xLists = []
+        user = User.objects.filter(username=user)
+
+        getRequests = RB.objects.filter(user=user)
+        if getRequests.exists():
+            for i in getRequests:
+                val = {
+                    'id': i.id,
+                    'user': i.user.username,
+                    'blood_type': i.blood_type,
+                    'gender': i.gender,
+                    'center': i.center,
+                    'telephone': i.telephone,
+                    'completed': i.completed,
+                }
+                xLists.append(val)
+
+            class Response(object):
+                data = xLists
+        else:
+            class Response(object):
+                data = xLists
+
+        return Response
+
+
+
+        
