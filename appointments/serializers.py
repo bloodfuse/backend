@@ -102,9 +102,9 @@ class RequestBloodSerializer(serializers.ModelSerializer):
 
     def details(user):
         xLists = []
-        user = User.objects.get(username=str(user))
+        # user = User.objects.get(username=str(user))
 
-        getRequests = RB.objects.filter(user=user.username)
+        getRequests = RB.objects.filter(user=user)
         if getRequests.exists():
             for i in getRequests:
                 val = {
