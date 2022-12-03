@@ -77,13 +77,13 @@ class DonorAppointmentSerializer(serializers.ModelSerializer):
 class RequestBloodSerializer(serializers.ModelSerializer):
     class Meta:
         model = RB
-        fields = ['user']
+        fields = ['username']
 
     def create(user, data):
         try:
             # y = User.objects.get(username=user[0])
             x = RB()
-            x.user = str(user),
+            x.username = str(user),
             x.blood_type = data['blood_type'],
             x.gender = data['gender'],
             x.center = data['center'],
@@ -105,12 +105,12 @@ class RequestBloodSerializer(serializers.ModelSerializer):
         xLists = []
         # user = User.objects.get(username=str(user))
 
-        getRequests = RB.objects.filter(user=user)
+        getRequests = RB.objects.filter(username=user)
         if getRequests.exists():
             for i in getRequests:
                 val = {
                     'id': i.id,
-                    'user': i.user.username,
+                    'user': i.username.username,
                     'blood_type': i.blood_type,
                     'gender': i.gender,
                     'center': i.center,
