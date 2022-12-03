@@ -81,7 +81,7 @@ class RequestBloodSerializer(serializers.ModelSerializer):
 
     def create(user, data):
         try:
-            user = User.objects.filter(username=str(user))
+            user = User.objects.get(username=str(user))
             x = RB()
             x.user = user,
             x.blood_type = data['blood_type'],
