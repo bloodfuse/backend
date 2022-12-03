@@ -97,6 +97,8 @@ class RequestBloodSerializer(serializers.ModelSerializer):
             class Response(object):
                 data = {'message': 'Error occurred',
                 'error': str(e),
+                'class':str(type(user)),
+                'user':str(user)
                 }
 
         return Response
