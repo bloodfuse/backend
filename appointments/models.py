@@ -57,8 +57,7 @@ class RequestsBlood(models.Model):
     ]
     id = models.UUIDField(unique=True, primary_key=True,
                           editable=False, default=uuid4)
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='user')
+    user = models.CharField(max_length=255)
     blood_type = models.CharField(
         max_length=10, choices=BLOOD_TYPE, default=BLOOD_TYPE[0])
     gender = models.CharField(max_length=10, choices=GENDER, default=GENDER[0])

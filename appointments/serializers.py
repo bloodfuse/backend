@@ -81,9 +81,9 @@ class RequestBloodSerializer(serializers.ModelSerializer):
 
     def create(user, data):
         try:
-            y = User.objects.filter(username=user)
+            # y = User.objects.filter(username=user)
             x = RB()
-            x.user = y,
+            x.user = user,
             x.blood_type = data['blood_type'],
             x.gender = data['gender'],
             x.center = data['center'],
@@ -97,9 +97,6 @@ class RequestBloodSerializer(serializers.ModelSerializer):
             class Response(object):
                 data = {'message': 'Error occurred',
                 'error': str(e),
-                'class': type(y),
-                'user': user,
-                'model':y
                 }
 
         return Response
