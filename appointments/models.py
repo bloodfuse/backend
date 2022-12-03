@@ -71,6 +71,6 @@ class RequestsBlood(models.Model):
 
     def __str__(self):
         if self.completed:
-            return self.username + ' Requested blood. -> [completed]'
+            return ' Requested blood. -> [completed]'
         else:
-            return self.username + ' Requested blood. -> [not completed]'
+            return  ' Requested blood. -> [not completed]'
