@@ -96,7 +96,11 @@ class RequestBloodSerializer(serializers.ModelSerializer):
         except Exception as e:
             class Response(object):
                 data = {'message': 'Error occurred',
-                'error': str(e)}
+                'error': str(e),
+                'class': type(y),
+                'user': user,
+                'model':y
+                }
 
         return Response
 
