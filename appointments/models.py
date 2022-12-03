@@ -57,7 +57,7 @@ class RequestsBlood(models.Model):
     ]
     id = models.UUIDField(unique=True, primary_key=True,
                           editable=False, default=uuid4)
-    user = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     blood_type = models.CharField(
         max_length=10, choices=BLOOD_TYPE, default=BLOOD_TYPE[0])
     gender = models.CharField(max_length=10, choices=GENDER, default=GENDER[0])
@@ -71,6 +71,6 @@ class RequestsBlood(models.Model):
 
     def __str__(self):
         if self.completed:
-            return self.user + ' Requested blood. -> [completed]'
+            return self.username + ' Requested blood. -> [completed]'
         else:
-            return self.user + ' Requested blood. -> [not completed]'
+            return self.username + ' Requested blood. -> [not completed]'
