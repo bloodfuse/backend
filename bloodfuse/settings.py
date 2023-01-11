@@ -23,7 +23,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'www.bloodfuse.com',
     'bloodfuse.com',
-    'shark-app-49nyv.ondigitalocean.app'
+    'shark-app-49nyv.ondigitalocean.app',
+    '54.237.9.201'
 ]
 
 
