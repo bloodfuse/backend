@@ -25,7 +25,7 @@ ALLOWED_HOSTS = [
     'bloodfuse.com',
     'shark-app-49nyv.ondigitalocean.app',
     '54.237.9.201',
-    'ec2-54-237-9-201.compute-1.amazonaws.com'
+    'ec2-54-237-9-201.compute-1.amazonaws.com',
 ]
 
 
