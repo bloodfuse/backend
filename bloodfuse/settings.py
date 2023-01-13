@@ -27,6 +27,8 @@ ALLOWED_HOSTS = [
     'shark-app-49nyv.ondigitalocean.app',
     '100.25.191.221',
     'ec2-100-25-191-221.compute-1.amazonaws.com',
+    'api.ec2-100-25-191-221.compute-1.amazonaws.com',
+    'api.bloodfuse.com'
 ]
 
 
