@@ -26,8 +26,8 @@ class Report(models.Model):
     blood_pressure =  models.PositiveIntegerField(default=0)
     age = models.PositiveIntegerField(default=0)
     blood_donation_quantity = models.PositiveIntegerField(default=0)
-    donation_time = models.TimeField()
-    donation_date = models.DateField()
+    donation_time = models.TimeField(auto_now_add=False)
+    donation_date = models.DateField(auto_now_add=False)
     timestamp  = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:

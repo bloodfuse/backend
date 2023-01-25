@@ -20,6 +20,8 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
             'last_name',
             'rc_number',
             'center_name',
+            'location',
+            'gender',
             'phone',
             'password1',
             'password2'
@@ -44,6 +46,8 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
         user.fullname = f"{ data.get('first_name') }_{ data.get('last_name') }"
         user.email = data.get('email')
         user.blood_group = data.get('blood_group', '')
+        user.location = data.get('location', '')
+        user.gender = data.get('gender', '')
         user.rc_number = data.get('rc_number', '')
         user.center_name = data.get('center_name', '')
         user.account_type = data.get('account_type')
@@ -56,6 +60,11 @@ class UserLoginSerializer(LoginSerializer):
         ("donor", "donor"),
         ("donation_center", "donation_center"),
         ("admin", "admin"),
+    ]
+
+    GENDER = [
+        ("male", "Male"),
+        ("female", "Female"),
     ]
 
     BLOOD_GROUP = [
@@ -78,6 +87,8 @@ class UserLoginSerializer(LoginSerializer):
     center_name = serializers.CharField(required=False)
     fullname = serializers.CharField(required=False)
     phone = serializers.CharField(required=False)
+    gender = serializers.CharField(required=False)
+    location = serializers.CharField(required=False)
     email = serializers.CharField(required=True)
     email_is_verified = serializers.BooleanField(default=False)
 
@@ -91,6 +102,8 @@ class UserLoginSerializer(LoginSerializer):
             'id',
             'rc_number',
             'phone',
+            'gender',
+            'location',
             'blood_group',
             'account_type',
             'center_name'
@@ -101,6 +114,8 @@ class UserLoginSerializer(LoginSerializer):
             'id',
             'rc_number',
             'phone',
+            'gender',
+            'location',
             'blood_group',
             'account_type',
             'center_name'
@@ -117,6 +132,8 @@ class UserSerializer(serializers.ModelSerializer):
             'id',
             'rc_number',
             'phone',
+            'gender',
+            'location',
             'blood_group',
             'account_type',
             'center_name'
@@ -167,6 +184,8 @@ class DonorSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'account_type'
+            'location',
+            'gender',
         ]
 
 
