@@ -5,6 +5,10 @@ from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASE = BASE_DIR / 'db.sqlite3'
+TEMPLATE = BASE_DIR / 'templates'
+STATIC = BASE_DIR / 'static/'
+MEDIA = BASE_DIR / 'd56ns165tm1d65sg1j65h1fdbd'
 
 
 # Quick-start development settings - unsuitable for production
@@ -19,16 +23,19 @@ SECRET_KEY = 'django-insecure-97rh=ob7_gi237t0e1)nslo7_^ag0ln2l$demb167)yaof&n*s
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'bloodfuse.pythonanywhere.com',
+    # Localhost
     'localhost',
     '127.0.0.1',
-    'www.bloodfuse.com',
-    'bloodfuse.com',
+    # Python Everywhere
+    'bloodfuse.pythonanywhere.com',
+    # Digital Ocean Server
     'shark-app-49nyv.ondigitalocean.app',
+    # AWS Server {Main Server}
     '100.25.191.221',
     'ec2-100-25-191-221.compute-1.amazonaws.com',
     'api.ec2-100-25-191-221.compute-1.amazonaws.com',
-    'api.bloodfuse.com'
+    'api.bloodfuse.com',
+    # AWS Server {Test Server}
 ]
 
 
@@ -45,7 +52,8 @@ INSTALLED_APPS = [
     # Apps
     'core',
     'appointments',
-    'reports',
+    'reports.apps.ReportsConfig',
+    'endpoint.apps.EndpointConfig',
 
     # 3rd Parties
     'corsheaders',
@@ -82,9 +90,7 @@ ROOT_URLCONF = 'bloodfuse.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'templates'
-        ],
+        'DIRS': [TEMPLATE],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,7 +112,7 @@ WSGI_APPLICATION = 'bloodfuse.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DATABASE,
     }
 }
 
@@ -156,14 +162,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+
 STATIC_URL = 'static/'
+STATIC_ROOT = STATIC
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static',
-#     # BASE_DIR / 'static_collections',
-# ]
-
-STATIC_ROOT = BASE_DIR / "static_collections"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = MEDIA
 
 
 # Default primary key field type
@@ -197,10 +201,17 @@ EMAIL_PORT = 587
 # CORS
 # _________________________________________________________________________________________
 CORS_ALLOWED_ORIGINS = [
+    # mainNet
     "https://www.bloodfuse.com",
-    "http://localhost:3000",
     "https://bloodfuse.com",
-    "http://127.0.0.1:3000"
+    # testNet
+    "https://site.test.bloodfuse.vercel.app",
+    "https://admin.test.bloodfuse.vercel.app",
+    # testNet
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
 
 # CORS_ALLOW_METHODS = [
@@ -295,7 +306,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    #     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     #     'ROTATE_REFRESH_TOKENS': False,
     #     'BLACKLIST_AFTER_ROTATION': False,
     #     'UPDATE_LAST_LOGIN': False,

@@ -19,6 +19,9 @@ from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
 
 from .view import CustomEmailVerification
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -35,12 +38,9 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    # Site
+    # Site / Admin
     path('', redirect_to_index, name="redirect_to_index"),
     path('_/', admin.site.urls),
-    path('api/', include('core.urls')),
-    path('api/appointments/', include('appointments.urls')),
-    path('api/reports/', include('reports.urls')),
 
     # dj-auth endpoints
     path(
@@ -72,6 +72,12 @@ urlpatterns = [
     # rest_framework_simplejwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    # other Api
+    path('api/', include('core.urls')),
+    path('api/appointments/', include('appointments.urls')),
+    path('api/reports/', include('reports.urls')),
+    path('api/endpoints/', include('endpoint.urls')),
 ]
 
 '''
@@ -83,3 +89,10 @@ This above re_path exposes 4 endpoints:
     A ReDoc view of your API specification at /api/redoc/
 
 '''
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
