@@ -3,6 +3,7 @@ from corsheaders.defaults import default_headers
 import os
 from pathlib import Path
 from datetime import timedelta
+import uuid
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,7 +18,7 @@ MEDIA = BASE_DIR / 'd56ns165tm1d65sg1j65h1fdbd'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ.get('APP_SECRET_KEY')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY') or str(uuid.uuid4())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
@@ -33,7 +34,6 @@ ALLOWED_HOSTS = [
     # AWS Server {Main Server}
     '100.25.191.221',
     'ec2-100-25-191-221.compute-1.amazonaws.com',
-    'api.ec2-100-25-191-221.compute-1.amazonaws.com',
     'api.bloodfuse.com',
     # AWS Server {Test Server}
     "52.91.128.102",
