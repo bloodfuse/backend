@@ -2,13 +2,13 @@ from django.urls import path, include
 from rest_framework import routers
 
 from .views import (
-    # UserViewSet, 
-    index, 
+    # UserViewSet,
+    index,
     DonorListView,
     BloodCentersListView,
     UserView,
+    AdminView,
 )
-
 
 
 router = routers.DefaultRouter()
@@ -17,8 +17,10 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('', index, name="index"),
     path('user/', UserView.as_view(), name="user_view"),
+    path('admin/', AdminView.as_view(), name="user_view"),
     path('users/donors/', DonorListView.as_view(), name='donor_list'),
-    path('users/blood-centers/', BloodCentersListView.as_view(), name='blood_centers_list'),
+    path('users/blood-centers/', BloodCentersListView.as_view(),
+         name='blood_centers_list'),
 ]
 
 urlpatterns += router.urls

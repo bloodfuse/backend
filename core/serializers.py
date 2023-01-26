@@ -17,6 +17,7 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
             'blood_group',
             'account_type',
             'first_name',
+            'role',
             'last_name',
             'rc_number',
             'center_name',
@@ -100,6 +101,7 @@ class UserLoginSerializer(LoginSerializer):
             'first_name',
             'last_name',
             'id',
+            'role',
             'rc_number',
             'phone',
             'gender',
@@ -114,6 +116,7 @@ class UserLoginSerializer(LoginSerializer):
             'id',
             'rc_number',
             'phone',
+            'role',
             'gender',
             'location',
             'blood_group',
@@ -130,6 +133,7 @@ class UserSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'id',
+            'role',
             'rc_number',
             'phone',
             'gender',
@@ -140,34 +144,70 @@ class UserSerializer(serializers.ModelSerializer):
         ]
         depth = 1
 
-    def details(user):
+    def details(user, level='user'):
         y = User.objects.filter(username=str(user))
         val = {
             'message': 'failed',
             'data': 'No data found'
         }
+        if level == 'user':
 
-        if y.exists():
-            for z in y:
-                xval = {
-                    'email': z.email,
-                    'first_name': z.first_name,
-                    'last_name': z.last_name,
-                    'id': z.id,
-                    'rc_number': z.rc_number,
-                    'phone': z.phone,
-                    'blood_group': z.blood_group,
-                    'account_type': z.account_type,
-                    'center_name': z.center_name,
+            if y.exists():
+                roles = []
+                for z in y:
+                    if z.role == 5133:
+                        roles.append(5133,4758,3214,2033,1155) 
+                    elif z.role == 4758:
+                        roles.append(4758,2033,1155) 
+                    elif z.role == 3214:
+                        roles.append(3214,2033,1155) 
+                    elif z.role == 2033:
+                        roles.append(2033,1155) 
+                    elif z.role == 1155:
+                        roles.append(1155)
+                    xval = {
+                        'email': z.email,
+                        'first_name': z.first_name,
+                        'last_name': z.last_name,
+                        'id': z.id,
+                        'role': roles,
+                        'rc_number': z.rc_number,
+                        'phone': z.phone,
+                        'blood_group': z.blood_group,
+                        'account_type': z.account_type,
+                        'center_name': z.center_name,
+                    }
+                val = {
+                    'message': 'success',
+                    'data': xval
                 }
-            val = {
-                'message': 'success',
-                'data': xval
-            }
-        # val = {
-        #     "user": str(user),
-        #     "type": str(type(user))
-        # }
+            # val = {
+            #     "user": str(user),
+            #     "type": str(type(user))
+            # }
+        else:
+            if y.exists():
+                roles = []
+                for z in y:
+                    if z.role == 5133:
+                        roles.append(5133,4758,3214,2033,1155) 
+                    elif z.role == 4758:
+                        roles.append(4758,2033,1155) 
+                    elif z.role == 3214:
+                        roles.append(3214,2033,1155) 
+                    elif z.role == 2033:
+                        roles.append(2033,1155) 
+                    elif z.role == 1155:
+                        roles.append(1155)
+                    xval = {
+                        'email': z.email,
+                        'id': z.id,
+                        'role': roles,
+                    }
+                val = {
+                    'message': 'success',
+                    'data': xval
+                }
 
         class Response(object):
             data = val
