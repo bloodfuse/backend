@@ -45,7 +45,7 @@ ALLOWED_HOSTS = [
 
 # Application definition
 
-INSTALLED_APPS = [
+DEFAULT_INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,6 +75,25 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 ]
+ADDED_INSTALLED_APPS = ['jazzmin']
+
+if os.environ.get('MODE') != 'production':
+    INSTALLED_APPS = DEFAULT_INSTALLED_APPS
+else:
+    INSTALLED_APPS = ADDED_INSTALLED_APPS + DEFAULT_INSTALLED_APPS
+    JAZZMIN_SETTINGS = {
+        "site_title": "BloodFuse DJango Admin",
+        "site_header": "BloodFuse",
+        "site_brand": "BloodFuse",
+        "copyright": "BloodFuse Ltd",
+        "welcome_sign": "Welcome to BloodFuse Django Admin",
+    }
+    JAZZMIN_UI_TWEAKS = {
+        "theme": "simplex",
+        'dark_mode_theme': "darkly"
+
+    }
+
 
 SITE_ID = 1
 
