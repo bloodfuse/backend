@@ -17,7 +17,7 @@ MEDIA = BASE_DIR / 'd56ns165tm1d65sg1j65h1fdbd'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ.get('APP_SECRET_KEY')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-97rh=ob7_gi237t0e1)nslo7_^ag0ln2l$demb167)yaof&n*s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
