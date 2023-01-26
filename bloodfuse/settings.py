@@ -1,4 +1,5 @@
 # Import os module
+from corsheaders.defaults import default_headers
 import os
 from pathlib import Path
 from datetime import timedelta
@@ -16,19 +17,18 @@ MEDIA = BASE_DIR / 'd56ns165tm1d65sg1j65h1fdbd'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ.get('APP_SECRET_KEY')
-SECRET_KEY = 'django-insecure-97rh=ob7_gi237t0e1)nslo7_^ag0ln2l$demb167)yaof&n*s'
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = [
     # Localhost
     'localhost',
     '127.0.0.1',
-    # Python Everywhere
+    # Python Everywhere {deprecated}
     'bloodfuse.pythonanywhere.com',
-    # Digital Ocean Server
+    # Digital Ocean Server {deprecated}
     'shark-app-49nyv.ondigitalocean.app',
     # AWS Server {Main Server}
     '100.25.191.221',
@@ -36,6 +36,10 @@ ALLOWED_HOSTS = [
     'api.ec2-100-25-191-221.compute-1.amazonaws.com',
     'api.bloodfuse.com',
     # AWS Server {Test Server}
+    "52.91.128.102",
+    'ec2-52-91-128-102.compute-1.amazonaws.com',
+    'api.ec2-52-91-128-102.compute-1.amazonaws.com',
+    'backend.testnet.bloodfuse.com',
 ]
 
 
@@ -205,23 +209,20 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.bloodfuse.com",
     "https://bloodfuse.com",
     # testNet
-    "https://site.test.bloodfuse.vercel.app",
-    "https://admin.test.bloodfuse.vercel.app",
-    # testNet
+    "https://frontend.testnet.bloodfuse.com",
+    "https://admin.testnet.bloodfuse.com",
+    # local dev
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
 
-# CORS_ALLOW_METHODS = [
-#     "DELETE",
-#     "GET",
-#     "OPTIONS",
-#     "PATCH",
-#     "POST",
-#     "PUT",
-# ]
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'Access-Control-Allow-Origin',
+]
 
 # CORS_ALLOW_HEADERS = [
 #     "accept",
@@ -254,10 +255,6 @@ MY_APP_AUTH_COOKIE_SAMESITE = True
 MY_APP_AUTH_COOKIE_SECURE = True
 
 
-# CORS_ALLOWED_CREDENTIALS: True
-
-# CORS_ALLOW_CREDENTIALS: True
-
 # _________________________________________________________________________________________
 # AUTH
 # _________________________________________________________________________________________
@@ -289,6 +286,8 @@ REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'core.serializers.UserRegisterSerializer'
 }
 
+# GLOBAL VARIABLES
+# THEVARIABLE = os.environ.get('SAVED')
 
 # _________________________________________________________________________________________
 # SIMPLE_JWT
@@ -304,37 +303,15 @@ REST_FRAMEWORK = {
     ),
 }
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    #     'ROTATE_REFRESH_TOKENS': False,
-    #     'BLACKLIST_AFTER_ROTATION': False,
-    #     'UPDATE_LAST_LOGIN': False,
-
-    #     'ALGORITHM': 'HS256',
-    #     'SIGNING_KEY': SECRET_KEY,
-    #     'VERIFYING_KEY': None,
-    #     'AUDIENCE': None,
-    #     'ISSUER': None,
-    #     'JWK_URL': None,
-    #     'LEEWAY': 0,
-
-    #     'AUTH_HEADER_TYPES': ('Bearer',),
-    #     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-    #     'USER_ID_FIELD': 'id',
-    #     'USER_ID_CLAIM': 'user_id',
-    #     'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
-
-    #     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    #     'TOKEN_TYPE_CLAIM': 'token_type',
-    #     'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
-
-    #     'JTI_CLAIM': 'jti',
-
-    #     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    #     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
-    #     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-}
+# SIMPLE JWT
+if os.environ.get('MODE') == 'production':
+    SIMPLE_JWT = {
+        'ACCESS_TOKEN_LIFETIME': timedelta(hours=2)
+    }
+else:
+    SIMPLE_JWT = {
+        'ACCESS_TOKEN_LIFETIME': timedelta(hours=24)
+    }
 
 
 # _________________________________________________________________________________________

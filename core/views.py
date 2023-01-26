@@ -15,7 +15,7 @@ from core.models import User
 
 @api_view()
 def index(request):
-    return JsonResponse({"message": "Welcome to bloodfuse API."})
+    return JsonResponse({"message": "Welcome to BloodFuse API."})
 
 
 class UserView(APIView):
@@ -26,6 +26,16 @@ class UserView(APIView):
         user = UserSerializer.details(user)
 
         return Response(user.data, status=status.HTTP_200_OK)
+
+
+class AdminView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        admin = request.user
+        admin = UserSerializer.details(admin, 'admin')
+
+        return Response(admin.data, status=status.HTTP_200_OK)
 
 class DonorListView(ListAPIView):
     queryset = User.objects.filter(account_type="donor")
