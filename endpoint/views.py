@@ -61,13 +61,9 @@ class AllDonors(APIView):
         isAdmin = userInfo(user)
         if isAdmin.role < 2000:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
-        elif isAdmin.role < 3000:
+        elif isAdmin.role > 2000 and isAdmin.role < 9000:
             return Response(status=status.HTTP_403_FORBIDDEN)
-        elif isAdmin.role < 4000:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-        elif isAdmin.role < 5000:
-            return Response(status=status.HTTP_403_FORBIDDEN)
-        elif isAdmin.role < 6000:
+        elif isAdmin.role > 9000:
             res = ADS.read()
 
             if res.data['status'] == 200:

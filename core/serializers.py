@@ -60,7 +60,7 @@ class UserLoginSerializer(LoginSerializer):
     ACCOUNT_TYPE = [
         ("donor", "donor"),
         ("donation_center", "donation_center"),
-        ("admin", "admin"),
+        ("empty", "empty"),
     ]
 
     GENDER = [
@@ -146,6 +146,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     def details(user, level='user'):
         y = User.objects.filter(username=str(user))
+        if not y.exists():
+            y = User.objects.filter(center_name=str(user))
         val = {
             'message': 'failed',
             'data': 'No data found'
