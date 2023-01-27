@@ -11,8 +11,6 @@ from rest_framework import status
 
 from core.models import User
 
-
-
 @api_view()
 def index(request):
     return JsonResponse({"message": "Welcome to BloodFuse API."})
