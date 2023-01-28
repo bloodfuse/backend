@@ -1,9 +1,12 @@
 # Import os module
+# import dotenv
 from corsheaders.defaults import default_headers
 import os
 from pathlib import Path
 from datetime import timedelta
 import uuid
+
+# dotenv.load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -94,6 +97,11 @@ else:
 
     }
 
+
+print(os.environ.get('MODE'))
+print(INSTALLED_APPS)
+print(SECRET_KEY)
+print(DEBUG)
 
 SITE_ID = 1
 
@@ -278,10 +286,14 @@ MY_APP_AUTH_COOKIE_SECURE = True
 # AUTH
 # _________________________________________________________________________________________
 AUTH_USER_MODEL = "core.User"
-# LOGIN_URL = 'http://localhost:8000/api/auth/login'
 # LOGIN_URL = 'https://bloodfuse.pythonanywhere.com/api/auth/login' # Old Login Url
 # LOGIN_URL = 'shark-app-49nyv.ondigitalocean.app/api/auth/login'  # New Login Url
-LOGIN_URL = 'api.bloodfuse.com/api/auth/login'  # New Login Url
+# LOGIN_URL = 'https://api.bloodfuse.com/api/auth/login/'  # New Login Url
+if os.environ.get('MODE') != 'production':
+    LOGIN_URL = 'http://localhost:3873/api/auth/login'
+else:
+    LOGIN_URL = 'https://backend.testnet.bloodfuse.com/api/auth/login/'  # New Login Url
+
 
 # _________________________________________________________________________________________
 # DJ-REST-AUTH
