@@ -43,22 +43,22 @@ urlpatterns = [
     path('_/', admin.site.urls),
 
     # dj-auth endpoints
+    path('api/auth/', include('dj_rest_auth.urls')),
+    path('api/registration/', include('dj_rest_auth.registration.urls')),
     path(
         'api/registration/account-confirm-email/<str:key>',
         # ConfirmEmailView.as_view(),
         CustomEmailVerification.as_view(),
         name='account_email'
     ),
-    path('api/auth/', include('dj_rest_auth.urls')),
-    path('api/registration/', include('dj_rest_auth.registration.urls')),
-    path(
-        'api/auth/password/reset/confirm/<slug:uidb64>/<slug:token>/',
-        PasswordResetConfirmView.as_view(), name='password_reset_confirm'
-    ),
     path(
         'api/account-confirm-email/',
         VerifyEmailView.as_view(),
         name='account_email_verification_sent'
+    ),
+    path(
+        'api/auth/password/reset/confirm/<slug:uidb64>/<slug:token>/',
+        PasswordResetConfirmView.as_view(), name='password_reset_confirm'
     ),
 
     # Swagger Api endpoints
