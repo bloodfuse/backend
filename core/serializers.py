@@ -158,13 +158,23 @@ class UserSerializer(serializers.ModelSerializer):
                 roles = []
                 for z in y:
                     if z.role == 5133:
-                        roles.append(5133,4758,3214,2033,1155) 
+                        roles.append(5133) 
+                        roles.append(4758) 
+                        roles.append(3214) 
+                        roles.append(2033) 
+                        roles.append(1155) 
                     elif z.role == 4758:
-                        roles.append(4758,2033,1155) 
+                        roles.append(4758) 
+                        roles.append(3214) 
+                        roles.append(2033) 
+                        roles.append(1155)  
                     elif z.role == 3214:
-                        roles.append(3214,2033,1155) 
+                        roles.append(3214)
+                        roles.append(2033)
+                        roles.append(1155)
                     elif z.role == 2033:
-                        roles.append(2033,1155) 
+                        roles.append(2033)
+                        roles.append(1155)
                     elif z.role == 1155:
                         roles.append(1155)
                     xval = {
@@ -192,13 +202,23 @@ class UserSerializer(serializers.ModelSerializer):
                 roles = []
                 for z in y:
                     if z.role == 5133:
-                        roles.append(5133,4758,3214,2033,1155) 
+                        roles.append(5133)
+                        roles.append(4758)
+                        roles.append(3214)
+                        roles.append(2033)
+                        roles.append(1155)
                     elif z.role == 4758:
-                        roles.append(4758,2033,1155) 
+                        roles.append(4758)
+                        roles.append(3214)
+                        roles.append(2033)
+                        roles.append(1155)
                     elif z.role == 3214:
-                        roles.append(3214,2033,1155) 
+                        roles.append(3214)
+                        roles.append(2033)
+                        roles.append(1155)
                     elif z.role == 2033:
-                        roles.append(2033,1155) 
+                        roles.append(2033)
+                        roles.append(1155)
                     elif z.role == 1155:
                         roles.append(1155)
                     xval = {
