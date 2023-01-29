@@ -17,19 +17,19 @@ STATIC = BASE_DIR / 'static/'
 MEDIA = BASE_DIR / 'd56ns165tm1d65sg1j65h1fdbd'
 
 # .env imports
-MODE = os.environ.get("mode")
-Database = os.environ.get("database")
+MODE = os.getenv("mode")
+Database = os.getenv("database")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get("APP_SECRET_KEY")
+# SECRET_KEY = os.getenv("APP_SECRET_KEY")
 SECRET_KEY = os.getenv("secret_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.environ.get("debug_status")))
+DEBUG = bool(int(os.getenv("debug_status")))
 
 ALLOWED_HOSTS = os.getenv("allowed_hosts").split(",")
 
@@ -86,9 +86,9 @@ else:
     }
 
 
-DEBUGi = os.getenv("auth_url")
-TIME_ZONEi = os.getenv("mailgun_url")
-print(os.environ.get("MODE"))
+print(os.getenv("mode"))
+print(os.getenv("MODE"))
+print(os.environ.get("mode"))
 print(INSTALLED_APPS)
 print(SECRET_KEY)
 print(ALLOWED_HOSTS)
@@ -142,11 +142,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get("DB_NAME"),
-            'USER': os.environ.get("DB_USER"),
-            'PASSWORD': os.environ.get("DB_PASSWORD"),
-            'HOST': os.environ.get("DB_HOST"),
-            'PORT': os.environ.get("DB_PORT"),
+            'NAME': os.getenv("DB_NAME"),
+            'USER': os.getenv("DB_USER"),
+            'PASSWORD': os.getenv("DB_PASSWORD"),
+            'HOST': os.getenv("DB_HOST"),
+            'PORT': os.getenv("DB_PORT"),
         }
     }
 
@@ -274,7 +274,7 @@ AUTH_USER_MODEL = "core.User"
 if MODE != 'production':
     LOGIN_URL = 'http://localhost:3873/api/auth/login'
 else:
-    LOGIN_URL = os.environ.get("login_url")  # New Login Url
+    LOGIN_URL = os.getenv("login_url")  # New Login Url
 
 
 # _________________________________________________________________________________________
@@ -301,7 +301,7 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 # GLOBAL VARIABLES
-# THEVARIABLE = os.environ.get("SAVED")
+# THEVARIABLE = os.getenv("SAVED")
 
 # _________________________________________________________________________________________
 # SIMPLE_JWT
