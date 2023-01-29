@@ -1,49 +1,37 @@
 # Import os module
-# import dotenv
+from bloodfuse.env import load_env
 from corsheaders.defaults import default_headers
 import os
 from pathlib import Path
 from datetime import timedelta
 import uuid
 
-# dotenv.load_dotenv()
+# dotenv.load_dotenv("
+load_env()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+#  Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATABASE = BASE_DIR / 'db.sqlite3'
 TEMPLATE = BASE_DIR / 'templates'
 STATIC = BASE_DIR / 'static/'
 MEDIA = BASE_DIR / 'd56ns165tm1d65sg1j65h1fdbd'
 
+# .env imports
+MODE = os.environ.get("mode")
+Database = os.environ.get("database")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get('APP_SECRET_KEY')
-SECRET_KEY = os.environ.get('SECRET_KEY') or str(uuid.uuid4())
+# SECRET_KEY = os.environ.get("APP_SECRET_KEY")
+SECRET_KEY = os.getenv("secret_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = bool(int(os.environ.get("debug_status")))
 
-ALLOWED_HOSTS = [
-    # Localhost
-    'localhost',
-    '127.0.0.1',
-    # Python Everywhere {deprecated}
-    'bloodfuse.pythonanywhere.com',
-    # Digital Ocean Server {deprecated}
-    'shark-app-49nyv.ondigitalocean.app',
-    # AWS Server {Main Server}
-    '100.25.191.221',
-    'ec2-100-25-191-221.compute-1.amazonaws.com',
-    'api.bloodfuse.com',
-    # AWS Server {Test Server}
-    "52.91.128.102",
-    'ec2-52-91-128-102.compute-1.amazonaws.com',
-    'api.ec2-52-91-128-102.compute-1.amazonaws.com',
-    'backend.testnet.bloodfuse.com',
-]
+ALLOWED_HOSTS = os.getenv("allowed_hosts").split(",")
 
 
 # Application definition
@@ -80,7 +68,7 @@ DEFAULT_INSTALLED_APPS = [
 ]
 ADDED_INSTALLED_APPS = ['jazzmin']
 
-if os.environ.get('MODE') != 'production':
+if MODE != 'production':
     INSTALLED_APPS = DEFAULT_INSTALLED_APPS
 else:
     INSTALLED_APPS = ADDED_INSTALLED_APPS + DEFAULT_INSTALLED_APPS
@@ -98,10 +86,13 @@ else:
     }
 
 
-print(os.environ.get('MODE'))
+DEBUGi = os.getenv("auth_url")
+TIME_ZONEi = os.getenv("mailgun_url")
+print(os.environ.get("MODE"))
 print(INSTALLED_APPS)
 print(SECRET_KEY)
-print(DEBUG)
+print(ALLOWED_HOSTS)
+print(type(DEBUG))
 
 SITE_ID = 1
 
@@ -140,23 +131,24 @@ WSGI_APPLICATION = 'bloodfuse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': DATABASE,
+if Database == 'sqlite3':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': DATABASE,
+        }
     }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('DB_NAME'),
-#         'USER': os.environ.get('DB_USER'),
-#         'PASSWORD': os.environ.get('DB_PASSWORD'),
-#         'HOST': os.environ.get('DB_HOST'),
-#         'PORT': os.environ.get('DB_PORT'),
-#     }
-# }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get("DB_NAME"),
+            'USER': os.environ.get("DB_USER"),
+            'PASSWORD': os.environ.get("DB_PASSWORD"),
+            'HOST': os.environ.get("DB_HOST"),
+            'PORT': os.environ.get("DB_PORT"),
+        }
+    }
 
 
 # Password validation
@@ -218,9 +210,9 @@ EMAIL_PORT = 587
 # * USE THE CONFIGS BELOW FOR PRODUCTION
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'your.email.host'
-# EMAIL_PORT = env.get('EMAIL_PORT')
-# EMAIL_HOST_USER = env.get('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = env.get('EMAIL_HOST_PASSWORD')
+# EMAIL_PORT = env.get("EMAIL_PORT")
+# EMAIL_HOST_USER = env.get("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = env.get("EMAIL_HOST_PASSWORD")
 
 
 # _________________________________________________________________________________________
@@ -231,25 +223,15 @@ EMAIL_PORT = 587
 # _________________________________________________________________________________________
 # CORS
 # _________________________________________________________________________________________
-CORS_ALLOWED_ORIGINS = [
-    # mainNet
-    "https://www.bloodfuse.com",
-    "https://bloodfuse.com",
-    # testNet
-    "https://frontend.testnet.bloodfuse.com",
-    "https://admin.testnet.bloodfuse.com",
-    # local dev
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
+# CORS_ALLOWED_ORIGINS = os.getenv("cors_allowed_hosts").split(",")
 
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'Access-Control-Allow-Origin',
 ]
+
+# print(CORS_ALLOWED_ORIGINS)
 
 # CORS_ALLOW_HEADERS = [
 #     "accept",
@@ -289,10 +271,10 @@ AUTH_USER_MODEL = "core.User"
 # LOGIN_URL = 'https://bloodfuse.pythonanywhere.com/api/auth/login' # Old Login Url
 # LOGIN_URL = 'shark-app-49nyv.ondigitalocean.app/api/auth/login'  # New Login Url
 # LOGIN_URL = 'https://api.bloodfuse.com/api/auth/login/'  # New Login Url
-if os.environ.get('MODE') != 'production':
+if MODE != 'production':
     LOGIN_URL = 'http://localhost:3873/api/auth/login'
 else:
-    LOGIN_URL = 'https://backend.testnet.bloodfuse.com/api/auth/login/'  # New Login Url
+    LOGIN_URL = os.environ.get("login_url")  # New Login Url
 
 
 # _________________________________________________________________________________________
@@ -319,7 +301,7 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 # GLOBAL VARIABLES
-# THEVARIABLE = os.environ.get('SAVED')
+# THEVARIABLE = os.environ.get("SAVED")
 
 # _________________________________________________________________________________________
 # SIMPLE_JWT
@@ -336,13 +318,13 @@ REST_FRAMEWORK = {
 }
 
 # SIMPLE JWT
-if os.environ.get('MODE') == 'production':
+if MODE == 'production':
     SIMPLE_JWT = {
         'ACCESS_TOKEN_LIFETIME': timedelta(hours=2)
     }
 else:
     SIMPLE_JWT = {
-        'ACCESS_TOKEN_LIFETIME': timedelta(hours=24)
+        'ACCESS_TOKEN_LIFETIME': timedelta(hours=int(os.getenv("dev_token_lifetime")))
     }
 
 
