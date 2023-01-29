@@ -214,7 +214,7 @@ EMAIL_PORT = 587
 # _________________________________________________________________________________________
 # CORS
 # _________________________________________________________________________________________
-# CORS_ALLOWED_ORIGINS = os.getenv("cors_allowed_hosts").split(",")
+CORS_ALLOWED_ORIGINS = os.getenv("cors_allowed_hosts").split(",")
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -222,7 +222,6 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'Access-Control-Allow-Origin',
 ]
 
-# print(CORS_ALLOWED_ORIGINS)
 
 # CORS_ALLOW_HEADERS = [
 #     "accept",
