@@ -85,15 +85,6 @@ else:
 
     }
 
-
-print(os.getenv("mode"))
-print(os.getenv("MODE"))
-print(os.environ.get("mode"))
-print(INSTALLED_APPS)
-print(SECRET_KEY)
-print(ALLOWED_HOSTS)
-print(type(DEBUG))
-
 SITE_ID = 1
 
 MIDDLEWARE = [
