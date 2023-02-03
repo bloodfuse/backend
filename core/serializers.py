@@ -28,7 +28,7 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
             'password2'
         ]
         extra_kwargs = {
-            'password1': {'write_only': True},
+            # 'password1': {'write_only': True},
             'password1': {'write_only': True},
         }
 
@@ -36,11 +36,7 @@ class UserRegisterSerializer(RegisterSerializer, serializers.ModelSerializer):
     def save(self, request, *args, **kwargs):
         data = self.data
         user = super().save(request)
-        user.username = "{0}_{1}_{2}".format(
-            data.get('first_name'),
-            data.get('last_name'),
-            get_random_string(6)
-        ),
+        user.username = data.get('email')
         user.first_name = data.get('first_name', '')
         user.last_name = data.get('last_name', '')
         user.phone = data.get('phone')
@@ -147,7 +143,7 @@ class UserSerializer(serializers.ModelSerializer):
     def details(user, level='user'):
         y = User.objects.filter(username=str(user))
         if not y.exists():
-            y = User.objects.filter(center_name=str(user))
+            y = User.objects.filter(email=str(user))
         val = {
             'message': 'failed',
             'data': 'No data found'
@@ -158,16 +154,16 @@ class UserSerializer(serializers.ModelSerializer):
                 roles = []
                 for z in y:
                     if z.role == 5133:
-                        roles.append(5133) 
-                        roles.append(4758) 
-                        roles.append(3214) 
-                        roles.append(2033) 
-                        roles.append(1155) 
+                        roles.append(5133)
+                        roles.append(4758)
+                        roles.append(3214)
+                        roles.append(2033)
+                        roles.append(1155)
                     elif z.role == 4758:
-                        roles.append(4758) 
-                        roles.append(3214) 
-                        roles.append(2033) 
-                        roles.append(1155)  
+                        roles.append(4758)
+                        roles.append(3214)
+                        roles.append(2033)
+                        roles.append(1155)
                     elif z.role == 3214:
                         roles.append(3214)
                         roles.append(2033)

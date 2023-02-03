@@ -36,13 +36,37 @@ class BloodCenterAppointments(ListAPIView, UpdateModelMixin):
         return self.partial_update(self.request, *args, **kwargs)
 
 
-class DonorsAppointments(ListAPIView):
+class DonorAppointments(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = DonorAppointmentSerializer
+    # serializer_class = DonorAppointmentSerializer
 
-    def get_queryset(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         donor_id = self.kwargs.get('donor_id', None)
-        return Appointment.objects.filter(donor=donor_id)
+        print(self.kwargs)
+        # print(self.args)
+        res = DonorAppointmentSerializer.appointments(donor_id)
+        # return Appointment.objects.filter(blood_center_id=center_id)
+        if res.data['status'] == 200:
+            return Response(res.data, status=status.HTTP_200_OK)
+        else:
+            return Response(res.data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    # def get_queryset(self, *args, **kwargs):
+    #     donor_id = self.kwargs.get('donor_id', None)
+    #     return Appointment.objects.filter(donor=donor_id)
+
+
+class DonorsAppointments(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        center_id = request.user
+        res = DonorAppointmentSerializer.all(center_id)
+        # return Appointment.objects.filter(blood_center_id=center_id)
+        if res.data['status'] == 200:
+            return Response(res.data, status=status.HTTP_200_OK)
+        else:
+            return Response(res.data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class RequestBlood(APIView):
@@ -51,17 +75,12 @@ class RequestBlood(APIView):
     def post(self, request):
         user = request.user
         data = request.data
-        res  = RBS.create(user, data)
+        res = RBS.create(user, data)
 
         return Response(res.data, status=status.HTTP_200_OK)
-
 
     def get(self, request):
         user = request.user
         res = RBS.details(user)
 
         return Response(res.data, status=status.HTTP_200_OK)
-        
-
-
-

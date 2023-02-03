@@ -5,10 +5,15 @@ from core.models import User
 
 
 class Appointment(models.Model):
-    STATUS = [
+    APPROVAL = [
         ('pending', 'pending'),
         ('declined', 'declined'),
         ('accepted', 'accepted')
+    ]
+    STATUS = [
+        ('pending', 'pending'),
+        ('in progress', 'in progress'),
+        ('completed', 'completed')
     ]
 
     id = models.UUIDField(unique=True, primary_key=True,
@@ -20,15 +25,13 @@ class Appointment(models.Model):
         to=User, on_delete=models.CASCADE, related_name='donor')
     blood_center = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='blood_center')
-    status = models.CharField(max_length=10, choices=STATUS, default=STATUS[0])
+    approval = models.CharField(max_length=10, choices=APPROVAL, default='pending')
+    status = models.CharField(max_length=12, choices=STATUS, default='pending')
     reason_for_decline = models.TextField(blank=True)
     timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return f"Donor:  {0} | Center: {1}".format(
-            self.donor,
-            self.recipient
-        )
+        return f"Donor: {self.donor.email} | Center: {self.blood_center.center_name}"
 
 
 class DonationHistory(models.Model):
