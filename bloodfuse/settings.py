@@ -272,7 +272,11 @@ else:
 # _________________________________________________________________________________________
 
 REST_USE_JWT = True
-JWT_AUTH_COOKIE = 'my-app-auth'  # The cookie key name can be the one you want
+JWT_AUTH_COOKIE = 'bloodfuse'  # The cookie key name can be the one you want
+JWT_AUTH_REFRESH_COOKIES = 'parser'
+JWT_AUTH_SECURE = False
+JWT_AUTH_HTTPONLY = True
+JWT_AUTH_SAMESITE = 'Lax'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False

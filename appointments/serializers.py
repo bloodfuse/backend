@@ -5,6 +5,7 @@ from .models import Appointment, RequestsBlood as RB
 
 from core.models import User
 
+
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
@@ -14,6 +15,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
 class BloodCenterAppointmentSerializer(serializers.ModelSerializer):
     time = serializers.TimeField(required=False)
     date = serializers.DateField(required=False)
+
     class Meta:
         model = Appointment
         fields = [
@@ -56,22 +58,90 @@ class BloodCenterAppointmentSerializer(serializers.ModelSerializer):
                 \n \nYour appointment with {blood_center} been rescheduled to {date} by {time}.
                 \n \nThanks for your understanding. 
                 """.format(
-                    firstname       =   instance.donor.first_name,
-                    blood_center    =   instance.blood_center,
-                    date            =   instance.date,
-                    time            =   instance.time
+                    firstname=instance.donor.first_name,
+                    blood_center=instance.blood_center,
+                    date=instance.date,
+                    time=instance.time
                 )
                 send_sms(instance.phone, sms_message)
             return instance
 
 
 class DonorAppointmentSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Appointment
-            exclude =  [
-                'reason_for_decline',
-                'blood_center',
-            ]
+    class Meta:
+        model = Appointment
+        exclude = [
+            'reason_for_decline',
+            'blood_center',
+        ]
+
+    def all(center_id):
+        xList = []
+        data = {}
+        try:
+            # print(type(center_id))
+            # y = User.objects.get(username=center_id[0])
+            app = Appointment.objects.filter(blood_center_id=center_id.id)
+            for x in app:
+                res = {
+                    "donor": f"{x.donor.first_name} {x.donor.last_name}",
+                    "date": x.date,
+                    "time": x.time,
+                    "approval":  str(x.approval),
+                    "status": x.status,
+                    "id": str(x.id)
+                }
+                xList.append(res)
+
+            class Response(object):
+                data = {}
+                data['data'] = xList
+                data['status'] = 200
+                data = data
+
+        except Exception as e:
+
+            class Response(object):
+                data = {}
+                data['error'] = str(e)
+                data['status'] = 500
+                data = data
+
+        return Response
+
+    def appointments(donor_id):
+        xList = []
+        data = {}
+        try:
+            # print(type(center_id))
+            # y = User.objects.get(username=donor_id[0])
+            app = Appointment.objects.filter(donor=donor_id)
+            for x in app:
+                res = {
+                    "centerName": f"{x.blood_center.center_name}",
+                    "date": x.date,
+                    "time": x.time,
+                    "approval":  str(x.approval),
+                    "status": x.status,
+                    "id": str(x.id)
+                }
+                xList.append(res)
+
+            class Response(object):
+                data = {}
+                data['data'] = xList
+                data['status'] = 200
+                data = data
+
+        except Exception as e:
+
+            class Response(object):
+                data = {}
+                data['error'] = str(e)
+                data['status'] = 500
+                data = data
+
+        return Response
 
 
 class RequestBloodSerializer(serializers.ModelSerializer):
@@ -96,8 +166,8 @@ class RequestBloodSerializer(serializers.ModelSerializer):
         except Exception as e:
             class Response(object):
                 data = {'message': 'Error occurred',
-                'error': str(e),
-                }
+                        'error': str(e),
+                        }
 
         return Response
 
@@ -126,7 +196,3 @@ class RequestBloodSerializer(serializers.ModelSerializer):
                 data = xLists
 
         return Response
-
-
-
-        

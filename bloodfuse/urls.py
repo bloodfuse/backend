@@ -44,9 +44,9 @@ urlpatterns = [
 
     # dj-auth endpoints
     path('api/auth/', include('dj_rest_auth.urls')),
-    path('api/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/register/', include('dj_rest_auth.registration.urls')),
     path(
-        'api/registration/account-confirm-email/<str:key>',
+        'api/register/account-confirm-email/<str:key>',
         # ConfirmEmailView.as_view(),
         CustomEmailVerification.as_view(),
         name='account_email'
