@@ -42,15 +42,15 @@ class User(AbstractUser):
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE)
     blood_group = models.CharField(
         max_length=3, choices=BLOOD_GROUP, blank=True)
-    rc_number = models.CharField(max_length=15, blank=True, unique=True,null=True)
+    rc_number = models.CharField(max_length=15, blank=True, unique=True)
     first_name = models.CharField(
         max_length=100, help_text='first_name', blank=True)
     last_name = models.CharField(
         max_length=100, help_text='last_name', blank=True)
     center_name = models.CharField(
-        max_length=500, help_text='Name of hospital, center or blood bank', unique=True, blank=True, null=True)
+        max_length=500, help_text='Name of hospital, center or blood bank', unique=True, blank=True)
     fullname = models.CharField(max_length=200)
-    phone = models.CharField(max_length=15, unique=True,null=True)
+    phone = models.CharField(max_length=15, unique=True)
     location = models.CharField(max_length=300)
     gender = models.CharField(max_length=6, choices=GENDER, default='male')
     email = models.EmailField(max_length=255, unique=True)

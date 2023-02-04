@@ -318,7 +318,8 @@ if MODE == 'production':
     }
 else:
     SIMPLE_JWT = {
-        'ACCESS_TOKEN_LIFETIME': timedelta(hours=int(os.getenv("dev_token_lifetime")))
+        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1)
+        # 'ACCESS_TOKEN_LIFETIME': timedelta(hours=int(os.getenv("dev_token_lifetime")))
     }
 
 
