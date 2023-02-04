@@ -12,6 +12,7 @@ from drf_yasg import openapi
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
+    TokenVerifyView
 )
 
 from dj_rest_auth.views import PasswordResetConfirmView
@@ -72,8 +73,9 @@ urlpatterns = [
     # rest_framework_simplejwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view()),
 
-    # other Api
+    # other vApi
     path('api/', include('core.urls')),
     path('api/appointments/', include('appointments.urls')),
     path('api/reports/', include('reports.urls')),
