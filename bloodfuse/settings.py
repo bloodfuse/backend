@@ -218,9 +218,10 @@ CORS_ALLOWED_ORIGINS = os.getenv("cors_allowed_hosts").split(",")
 
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOW_HEADERS = list(default_headers) + [
-    'Access-Control-Allow-Origin',
-]
+CORS_ALLOW_HEADERS = list(default_headers)
+# CORS_ALLOW_HEADERS = list(default_headers) + [
+#     'Access-Control-Allow-Origin',
+# ]
 
 
 # CORS_ALLOW_HEADERS = [
