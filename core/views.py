@@ -11,6 +11,7 @@ from rest_framework import status
 
 from core.models import User
 
+
 @api_view()
 def index(request):
     return JsonResponse({"message": "Welcome to BloodFuse API."})
@@ -35,13 +36,25 @@ class AdminView(APIView):
 
         return Response(admin.data, status=status.HTTP_200_OK)
 
+
+class isAdminView(APIView):
+
+    def get(self, request):
+        email = request.query_params.get('admin')
+        check_is_admin = User.objects.filter(email=email)
+        if check_is_admin:
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
 class DonorListView(ListAPIView):
     queryset = User.objects.filter(account_type="donor")
     permission_classes = [IsAuthenticated]
     serializer_class = DonorSerializer
 
+
 class BloodCentersListView(ListAPIView):
     queryset = User.objects.filter(account_type="donation_center")
     permission_classes = [IsAuthenticated]
     serializer_class = BloodCentersSerializer
-
